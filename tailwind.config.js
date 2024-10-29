@@ -15,7 +15,10 @@ export default {
       'silver': '#ecebff',
       'bubble-gum': '#ff77e9',
       'bermuda': '#78dcca',
-      'red' : '#F95454'
+      'red' : '#F95454',
+      'biru' : '#1D4ED8',
+      'abu' : '#A0A3BD',
+      'ungu' : '#3B1E54'
     },
   },
   plugins: [],
