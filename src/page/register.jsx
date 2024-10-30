@@ -14,9 +14,23 @@ function App() {
           <img className="w-40" src={Logo} alt="Tickitz Logo" />
         </div>
         <div className="bg-white shadow-lg rounded-lg p-8">
+          <div className="flex justify-between items-center mb-8">
+            <div className='flex flex-col justify-center items-center'>
+                <div className='flex justify-center items-center w-12 h-12 bg-orenMuda rounded-full text-center'>1</div>
+                <div>Fill Form</div>
+            </div>
+            <div className="w-16 border border-abu border-dashed"></div>
+            <div className='flex flex-col justify-center items-center'>
+                <div className='flex justify-center items-center w-12 h-12 bg-abu rounded-full text-center '>2</div>
+                <div>Activate</div>
+            </div>
+            <div className="w-16 border border-abu border-dashed"></div>
+            <div className='flex flex-col justify-center items-center'>
+                <div className='flex justify-center items-center w-12 h-12 bg-abu rounded-full text-center'>3</div>
+                <div>Done</div>
+            </div>
+          </div>
           <form className="flex flex-col gap-6">
-            <div className='text-3xl font-bold'>Welcome Back👋</div>
-            <div className='text-lg text-abu'>Sign in with your data that you entered during your registration</div>
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="text-gray-600">Email</label>
               <input className="py-3 px-4 rounded-md border border-abu focus:outline-none focus:ring-2 focus:ring-blue-600" type="email" id="email" name="email" placeholder="Enter your email" />
@@ -25,9 +39,15 @@ function App() {
               <label htmlFor="password" className="text-gray-600">Password</label>
               <input className="py-3 px-4 rounded-md border border-abu focus:outline-none focus:ring-2 focus:ring-blue-600" type="password" id="password" name="password" placeholder="Enter your password" />
             </div>
-            <a className="text-right text-sm text-gray-600 mt-6">Forgot your password?</a>
+            <div className="flex items-center">
+              <input type="checkbox" id="terms" className="mr-2" />
+              <label htmlFor="terms" className="text-sm text-gray-600">I agree to terms & conditions</label>
+            </div>
             <div className='py-5 px-3 rounded-md bg-oren text-center text-white font-semibold'>
-                <button><Link to="/home">Login</Link></button>
+                <button>Join For Free Now</button>
+            </div>
+            <div className="text-center text-sm text-gray-600 mt-6">
+            Already have an account? <Link to="/login" href="#" className="text-blue-600 hover:underline">Log in</Link>
             </div>
             <div className='flex gap-3 items-center justify-between'>
                 <div className='w-48 h-1 bg-abu'></div>

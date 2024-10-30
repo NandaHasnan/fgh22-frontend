@@ -12,6 +12,7 @@ import Ebv from '../assets/gambar/ebv.id 2.png'
 import Cineone from '../assets/gambar/CineOne21 2.png'
 import Hiflix from '../assets/gambar/hiflix 2.png'
 import { Link } from 'react-router-dom';
+import { GoArrowRight } from "react-icons/go";
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
@@ -34,53 +35,38 @@ function App() {
         </div>
       </nav>
 
+      <section className=' bg-cover py-24 px-48 h-[462px] bg-cover-marvel'>
+            <div className=''>
+                <div className='text-lg text-white'>LIST MOVIE OF THE WEEK</div>
+                <div className='pr-96 text-5xl text-white'>Experience the Magic of Cinema: Book Your Tickets Today</div>
+            </div>
+      </section>  
+
       <main className='px-48 flex flex-col gap-10'>
-        <section className='flex py-14'>
-          <div className=' flex flex-col gap-2.5'>
-            <div className='text-oren text-lg font-bold'>MOVIE TICKET PURCHASES #1 IN INDONESIAMOVIE TICKET PURCHASES #1 IN INDONESIA</div>
-            <div className='text-5xl'>Experience the Magic of Cinema: Book Your Tickets Today</div>
-            <div className='text-abu text-base'>Sign up and get the ticket with a lot of discount</div>
-          </div>
-          <div className='grid-cols-2'>
-            {/* <div><img src={John} alt="" /></div>
-            <div><img src={Lion} alt="" /></div>
-            <div><img src={Spi} alt="" /></div>
-            <div><img src={Roblox} alt="" /></div> */}
-          </div>
+        <section className='py-16'>
+            <div className='flex gap-5'>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="event" className="text-gray-600">Cari Event</label>
+                    <input className="py-3 px-4 rounded-md border border-abu focus:outline-none " type="text" id="event" name="event" placeholder="New Born Expert" />
+                </div>
+                <div className='flex flex-col gap-5'>
+                    <label htmlFor="filter">Filter</label>
+                    <div>
+                        <span className='px-6 py-2.5 bg-orenMuda rounded-md'>Thriller</span>
+                        <span className='px-6 py-2.5'>Horror</span>
+                        <span className='px-6 py-2.5'>Romantic</span>
+                        <span className='px-6 py-2.5'>Adventure</span>
+                        <span className='px-6 py-2.5'>Sci-fi</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section className='flex flex-col gap-6'>
-          <div className=' flex flex-col gap-3.5'>
-            <div className='text-oren text-base font-bold'>WHY CHOOSE US</div>
-            <div className='text-3xl w-96'>Unleashing the Ultimate Movie Experience</div>
-          </div>
-          <div className='flex gap-8'>
-            <div className='flex flex-col gap-5'>
-              <div className='w-14 h-14 bg-oren rounded-full'></div>
-              <div className='text-lg font-semibold'>Guaranteed</div>
-              <div className='text-base text-abu'>Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.</div>
-            </div>
-            <div className='flex flex-col gap-5'>
-              <div className='w-14 h-14 bg-oren rounded-full'></div>
-              <div className='text-lg font-semibold'>Affordable</div>
-              <div className='text-base text-abu'>Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.</div>
-            </div>
-            <div className='flex flex-col gap-5'>
-              <div className='w-14 h-14 bg-oren rounded-full'></div>
-              <div className='text-lg font-semibold'>24/7 Customer Support</div>
-              <div className='text-base text-abu'>Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.</div>
-            </div>
-          </div>
-        </section>
-
-        <section className='flex flex-col py-14'>
-          <div className='text-center flex flex-col gap-3.5'>
-            <div className='text-lg text-oren font-semibold'>MOVIES</div>
-            <div className='text-3xl'>Exciting Movies That Should Be Watched Today</div>
-          </div>
+        <section className='flex flex-col'>
           <div className='flex gap-10 justify-between'>
             <div className='flex flex-col gap-5'>
               <img className='w-72' src={Widow} alt="" />
+              <Link to="/detail">datail</Link>
               <div className='text-2xl font-semibold'>Black Widow</div>
               <div className='flex gap-1'>
                 <span className='rounded-lg px-2 bg-abu'>Action</span>
@@ -113,57 +99,12 @@ function App() {
               </div>
             </div> */}
           </div>
-           <Link to="/grid" className='text-oren text-center py-14 font-semibold'>View All</Link>
-        </section>
-
-        <section>
-          <div className=' flex flex-col gap-3.5'>
-            <div className='text-oren text-base font-bold'>WHY CHOOSE US</div>
-            <div className='flex justify-between '>
-              <div className='text-3xl'>Unleashing the Ultimate Movie Experience</div>
-              <div className='flex gap-2'>
-                <button className='w-16 h-16 bg-abu rounded-full'></button>
-                <button className='w-16 h-16 bg-oren rounded-full'></button>
-              </div>
-            </div>
-            <div className='flex gap-10 justify-between'>
-            <div className='flex flex-col gap-5'>
-              <img className='w-72' src={Widow} alt="" />
-              <div className='text-2xl font-semibold'>Black Widow</div>
-              <div className='text-oren text-base font-semibold'>December 2024</div>
-              <div className='flex gap-1'>
-                <span className='rounded-lg px-2 bg-abu'>Action</span>
-                <span className='rounded-lg px-2 bg-abu'>Adventure</span>
-              </div>
-            </div>
-            {/* <div className='flex flex-col gap-5'>
-              <img className='w-72' src={Wiches} alt="" />
-              <div className='text-2xl font-semibold'>Black Widow</div>
-              <div className='text-oren text-base font-semibold'>December 2024</div>
-              <div className='flex gap-1'>
-                <span className='rounded-lg px-2 bg-abu'>Action</span>
-                <span className='rounded-lg px-2 bg-abu'>Adventure</span>
-              </div>
-            </div>
-            <div className='flex flex-col gap-5'>
-              <img className='w-72' src={Tenet} alt="" />
-              <div className='text-2xl font-semibold'>Black Widow</div>
-              <div className='text-oren text-base font-semibold'>December 2024</div>
-              <div className='flex gap-1'>
-                <span className='rounded-lg px-2 bg-abu'>Action</span>
-                <span className='rounded-lg px-2 bg-abu'>Adventure</span>
-              </div>
-            </div>
-            <div className='flex flex-col gap-5'>
-              <img className='w-72' src={Spiderman} alt="" />
-              <div className='text-2xl font-semibold'>Black Widow</div>
-              <div className='text-oren text-base font-semibold'>December 2024</div>
-              <div className='flex gap-1'>
-                <span className='rounded-lg px-2 bg-abu'>Action</span>
-                <span className='rounded-lg px-2 bg-abu'>Adventure</span>
-              </div>
-            </div> */}
-          </div>
+          <div className='flex gap-5 justify-center text-center text-white'>
+            <div className='flex w-10 h-10 bg-orenMuda rounded-full justify-center items-center'>1</div>
+            <div className='flex w-10 h-10 bg-abu rounded-full justify-center items-center'>2</div>
+            <div className='flex w-10 h-10 bg-abu rounded-full justify-center items-center'>3</div>
+            <div className='flex w-10 h-10 bg-abu rounded-full justify-center items-center'>4</div>
+            <div className='flex w-10 h-10 bg-orenMuda rounded-full justify-center items-center'><GoArrowRight /></div>
           </div>
         </section>
 

@@ -3,11 +3,19 @@ export default {
   content: ["./index.html",
     "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'bg-marvel' : "url('./src/assets/gambar/marvel.png')",
+        'cover-marvel' : "url('./src/assets/gambar/cover.png')",
+        'cover-detail' : "url('./src/assets/gambar/Rectangle 613.png')"
+        // 'spiderman' : "url('./src/assets/gambar/spiderman.png')"
+      }
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
       'white': '#ffffff',
+      'black' : '#000000',
       'purple': '#3f3cbb',
       'midnight': '#121063',
       'metal': '#565584',
@@ -18,6 +26,7 @@ export default {
       'red' : '#F95454',
       'biru' : '#1D4ED8',
       'abu' : '#A0A3BD',
+      'abuMuda' : '#8692A6',
       'ungu' : '#3B1E54',
       'oren' : '#FF6600',
       'orenMuda' : '#ff983f'

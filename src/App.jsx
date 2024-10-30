@@ -2,6 +2,9 @@ import{ useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './page/home';
 import Login from './page/login';
+import Register from './page/register';
+import Grid from './page/home-grid';
+import Detail from './page/detail';
 // import Contac from './page/contac';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
@@ -9,17 +12,25 @@ import Login from './page/login';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/home',
     element: <Home />,
   },
   {
     path: '/login',
     element: <Login />,
   },
-  // {
-  //   path: '/contac-us',
-  //   element: <Contac />,
-  // },
+  {
+    path: '/register',
+    element: <Register />,
+  },
+  {
+    path: '/grid',
+    element: <Grid />,
+  },
+  {
+    path: '/detail',
+    element: <Detail />,
+  },
 ]);
 
 function App() {
