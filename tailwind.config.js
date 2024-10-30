@@ -18,7 +18,9 @@ export default {
       'red' : '#F95454',
       'biru' : '#1D4ED8',
       'abu' : '#A0A3BD',
-      'ungu' : '#3B1E54'
+      'ungu' : '#3B1E54',
+      'oren' : '#FF6600',
+      'orenMuda' : '#ff983f'
     },
   },
   plugins: [],
