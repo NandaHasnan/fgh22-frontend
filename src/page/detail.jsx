@@ -88,58 +88,57 @@ function App() {
         </section>
 
         <section>
-            <div>
-                <div>Book Tickets</div>
+            <div className='flex flex-col gap-9'>
+                <div className='text-3xl font-medium'>Book Tickets</div>
                 <div className='flex justify-between'>
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="event" className="text-gray-600">Choose Date</label>
-                        <select className="py-3.5 px-16 rounded-md border border-abu focus:outline-none " type="text" id="event" name="event" placeholder="New Born Expert">
+                        <label htmlFor="event" className="text-gray-600 font-semibold">Choose Date</label>
+                        <select className="py-3.5 px-16 w-72 rounded-md bg-abuMuda2 focus:outline-none " type="text" id="event" name="event" placeholder="New Born Expert">
                             <option value="">21/07/2024</option>
                             <option value="">22/07/2024</option>
                             <option value="">23/07/2024</option>
                         </select>
                     </div>
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="event" className="text-gray-600">Choose Time</label>
-                        <select className="py-3.5 px-16 rounded-md border border-abu focus:outline-none " type="text" id="event" name="event" placeholder="New Born Expert">
+                        <label htmlFor="event" className="text-gray-600 font-semibold">Choose Time</label>
+                        <select className="py-3.5 px-16 w-72 rounded-md bg-abuMuda2 focus:outline-none " type="text" id="event" name="event" placeholder="New Born Expert">
                             <option value="">08.30</option>
                             <option value="">010.30</option>
                             <option value="">14.30</option>
                         </select>
                     </div>
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="event" className="text-gray-600">Choose Location</label>
-                        <div>
-                            <select className="py-4 px-16 rounded-md border border-abu focus:outline-none " type="text" id="event" name="event" placeholder="New Born Expert">
+                        <label htmlFor="event" className="text-gray-600 font-semibold">Choose Location</label>
+                        <div className='flex gap-5'>
+                            <select className="py-4 px-16 w-72 rounded-md bg-abuMuda2 focus:outline-none " type="text" id="event" name="event" placeholder="New Born Expert">
                                 <option value="">Purwokerto</option>
                                 <option value="">Madiun</option>
                                 <option value="">Semarang</option>
                             </select>
+                            <button className='bg-oren px-20 rounded-md text-white'>Filter</button>
                         </div>
                         
                     </div>
-                    <div className=''>
-                        <button className='bg-oren'>Filter</button>
-                    </div>
+                    
                 </div>
-                <div>
-                    <div></div>
-                    <div></div>
+                <div className='flex gap-8'>
+                    <div className='text-xl font-semibold'>Choose Cinema</div>
+                    <div className='text-lg text-abuMuda font-semibold'>39 Result </div>
                 </div>
-                <div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                <div className='flex gap-5 justify-between'>
+                    <div className='w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md'></div>
+                    <div className='w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md'></div>
+                    <div className='w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md'></div>
+                    <div className='w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md'></div>
                 </div>
-                <div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                <div className='flex gap-5 justify-center text-center text-white'>
+                    <div className='flex w-10 h-10 bg-orenMuda rounded-md justify-center items-center'>1</div>
+                    <div className='flex w-10 h-10 border borde-2 border-abuMuda3 rounded-md justify-center items-center text-text1'>2</div>
+                    <div className='flex w-10 h-10 border borde-2 border-abuMuda3 rounded-md justify-center items-center text-text1'>3</div>
+                    <div className='flex w-10 h-10 border borde-2 border-abuMuda3 rounded-md justify-center items-center text-text1'>4</div>
                 </div>
-                <div>
-                    <button></button>
+                <div className='flex justify-center'>
+                    <Link to="/order" className='bg-oren py-4 px-20 rounded-md text-white'>Book Now</Link>
                 </div>
             </div>
         </section>

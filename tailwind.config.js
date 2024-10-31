@@ -27,6 +27,9 @@ export default {
       'biru' : '#1D4ED8',
       'abu' : '#A0A3BD',
       'abuMuda' : '#8692A6',
+      'abuMuda2' : '#EFF0F6',
+      'abuMuda3' : '#DEDEDE',
+      'text1' : '#4E4B66',
       'ungu' : '#3B1E54',
       'oren' : '#FF6600',
       'orenMuda' : '#ff983f'

@@ -5,6 +5,7 @@ import Login from './page/login';
 import Register from './page/register';
 import Grid from './page/home-grid';
 import Detail from './page/detail';
+import Order from './page/order';
 // import Contac from './page/contac';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: '/detail',
     element: <Detail />,
+  },
+  {
+    path: '/order',
+    element: <Order />,
   },
 ]);
 
