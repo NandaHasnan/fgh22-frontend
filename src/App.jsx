@@ -6,12 +6,19 @@ import Register from './page/register';
 import Grid from './page/home-grid';
 import Detail from './page/detail';
 import Order from './page/order';
+import Payment from './page/payment';
+import PaymentModal from './page/payment-modal';
+import Ticket from './page/ticket-result';
 // import Contac from './page/contac';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
 // import './App.css';
 
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
   {
     path: '/home',
     element: <Home />,
@@ -35,6 +42,18 @@ const router = createBrowserRouter([
   {
     path: '/order',
     element: <Order />,
+  },
+  {
+    path: '/payment',
+    element: <Payment />,
+  },
+  {
+    path: '/payment-modal',
+    element: <PaymentModal />,
+  },
+  {
+    path: '/ticket',
+    element: <Ticket />,
   },
 ]);
 
