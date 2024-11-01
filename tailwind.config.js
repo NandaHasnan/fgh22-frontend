@@ -5,7 +5,9 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
+        // 'cover-' : "url('./src/assets/gambar/Rectangle 1.png')",
         'bg-marvel' : "url('./src/assets/gambar/marvel.png')",
+        'bg-marvel2' : "url('./src/assets/gambar/marvel2.png')",
         'cover-marvel' : "url('./src/assets/gambar/cover.png')",
         'cover-detail' : "url('./src/assets/gambar/Rectangle 613.png')"
         // 'spiderman' : "url('./src/assets/gambar/spiderman.png')"
