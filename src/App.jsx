@@ -10,6 +10,7 @@ import Payment from './page/payment';
 import PaymentModal from './page/payment-modal';
 import Ticket from './page/ticket-result';
 import Profile from './page/profile';
+import Odrhistori from './page/order-history';
 // import Contac from './page/contac';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
   {
     path: '/profil',
     element: <Profile />,
+  },
+  {
+    path: '/odrhistori',
+    element: <Odrhistori />,
   },
 ]);
 

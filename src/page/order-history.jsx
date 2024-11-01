@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import Logo from '../assets/logo.png'
 import Profile from '../assets/gambar/P-profile.png'
-// import Ebv from '../assets/gambar/ebv.id 2.png'
-// import Cineone from '../assets/gambar/CineOne21 2.png'
-// import Hiflix from '../assets/gambar/hiflix 2.png'
+import Ebv from '../assets/gambar/ebv.id 2.png'
+import Cineone from '../assets/gambar/CineOne21 2.png'
+import Hiflix from '../assets/gambar/hiflix 2.png'
 import { Link } from 'react-router-dom';
 import { IoIosArrowDown } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 import { SlOptions } from "react-icons/sl";
 import { FaStar } from "react-icons/fa6";
-import { IoEyeOutline } from "react-icons/io5";
+// import { IoEyeOutline } from "react-icons/io5";
 // import { FaCheck } from "react-icons/fa6";
 // import Google from '../assets/gambar/logos_google-pay.png'
 // import Visa from '../assets/gambar/logos_visa.png'
@@ -79,65 +79,73 @@ function App() {
                 <div className='flex flex-col gap-12'>
                   <div className='py-6 px-12 w-[950px] h-20 rounded-lg bg-white'>
                     <div className='flex gap-14'>
-                      <Link className='text-lg text-[#14142B]'>Account Settings</Link>
-                      <Link to='/odrhistori' className='text-lg text-[#AAAAAA]'>Order History</Link>
+                      <Link className='text-lg text-[#AAAAAA]'>Account Settings</Link>
+                      <Link to='/order' className='text-lg text-[#14142B]'>Order History</Link>
                     </div>
                   </div>
-                  <div className='py-10 px-12 w-[950px] h-[418px] rounded-lg bg-white'>
-                    <div className='flex flex-col gap-12'>
-                      <div className='flex flex-col gap-4'>
-                        <div className='text-base text-[#14142B]'>Details Information</div>
-                        <div className='px-6 w-[825px] h-[1px] bg-[#DEDEDE]'></div>
+                  <div className='py-10 px-12 w-[950px] rounded-lg bg-white'>
+                    <div className='flex flex-col gap-10'>
+                      <div className='flex justify-between items-center'>
+                        <div className='flex flex-col gap-1'>
+                            <div className='text-sm text-[#AAAAAA]'>Tuesday, 07 July 2020 - 04:30pm</div>
+                            <div className='text-2xl '>Spider-Man: Homecoming</div>
+                        </div>
+                        <div>
+                            <img src={Cineone} alt="" />
+                        </div>
                       </div>
-                      <div className='grid grid-cols-2 gap-8 justify-between'>
-                        <div className='flex flex-col gap-3'>
-                          <label className='text-base text-[#4E4B66]' htmlFor="f-name">First Name</label>
-                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='f-name' name='f-name' placeholder='Jonas'/>
+                      <div className='px-6 w-[850px] h-[1px] bg-[#DEDEDE]'></div>
+                      <div className='flex justify-between'>
+                        <div className='flex gap-4'>
+                            <div className='w-48 h-10 bg-[#00BA8820] text-center py-1.5 text-[#00BA88] font-semibold rounded-lg'>Ticket in active</div>
+                            <div className='w-48 h-10 bg-[#E82C2C20] text-center py-1.5 text-[#E82C2C] font-semibold rounded-lg'>Not Paid</div>
                         </div>
-                        <div className='flex flex-col gap-3'>
-                          <label className='text-base text-[#4E4B66]' htmlFor="l-name">Last Name</label>
-                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='l-name' name='l-name' placeholder='El Rodriguez'/>
-                        </div>
-                        <div className='flex flex-col gap-3'>
-                          <label className='text-base text-[#4E4B66]' htmlFor="email">E-mail</label>
-                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder='jonasrodrigu123@gmail.com'/>
-                        </div>
-                        <div className='flex flex-col gap-3'>
-                          <label className='text-base text-[#4E4B66]' htmlFor="number">Phone Number</label>
-                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='number' name='number' placeholder='81445687121'/>
-                        </div>
-                      </div>   
+                        <div className='text-lg text-[#AAAAAA] flex items-center gap-4'>Show Details<IoIosArrowDown /></div>
+                      </div>
                     </div>        
                   </div>
-                  <div className='py-10 pb-16 px-12 w-[950px] rounded-lg bg-white'>
-                    <div className='flex flex-col gap-12'>
-                      <div className='flex flex-col gap-4'>
-                        <div className='text-base text-[#14142B]'>Details Information</div>
-                        <div className='px-6 w-[825px] h-[1px] bg-[#DEDEDE]'></div>
+                  <div className='py-10 px-12 w-[950px] rounded-lg bg-white'>
+                    <div className='flex flex-col gap-10'>
+                      <div className='flex justify-between items-center'>
+                        <div className='flex flex-col gap-1'>
+                            <div className='text-sm text-[#AAAAAA]'>Monday, 14 June 2020 - 02:00pm</div>
+                            <div className='text-2xl '>Avengers: End Game</div>
+                        </div>
+                        <div>
+                            <img src={Hiflix} alt="" />
+                        </div>
                       </div>
-                      <div className='grid grid-cols-2 gap-8 justify-between'>
-                        <div className='flex flex-col gap-3'>
-                          <label className='text-base text-[#4E4B66]' htmlFor="new-pass">New Password</label>
-                          <div className="relative w-full">
-                            <span className="absolute inset-y-0 right-12 flex items-center pointer-events-none">
-                              <IoEyeOutline className="text-[#A0A3BD]" />
-                            </span>
-                            <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg focus:outline-none' type="text" id='con-pass' name='con-pass' placeholder='Write your password'/>
-                          </div>
+                      <div className='px-6 w-[850px] h-[1px] bg-[#DEDEDE]'></div>
+                      <div className='flex justify-between'>
+                        <div className='flex gap-4'>
+                            <div className='w-48 h-10 bg-[#6E719120] text-center py-1.5 text-[#6E7191] font-semibold rounded-lg'>Ticket used</div>
+                            <div className='w-48 h-10 bg-[#1D4ED820] text-center py-1.5 text-[#1D4ED8] font-semibold rounded-lg'>Paid</div>
                         </div>
-                        <div className='flex flex-col gap-3'>
-                          <label className='text-base text-[#4E4B66]' htmlFor="con-pass">Confirm Password</label>
-                          <div className="relative w-full">
-                            <span className="absolute inset-y-0 right-12 flex items-center pointer-events-none">
-                              <IoEyeOutline className="text-[#A0A3BD]" />
-                            </span>
-                            <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg focus:outline-none' type="text" id='con-pass' name='con-pass' placeholder='Confirm your password'/>
-                          </div>
-                        </div>
-                      </div>   
-                    </div>
+                        <div className='text-lg text-[#AAAAAA] flex items-center gap-4'>Show Details<IoIosArrowDown /></div>
+                      </div>
+                    </div>        
                   </div>
-                  <Link className='py-3 w-80 h-14 bg-oren text-center text-white rounded-2xl'>Update changes</Link>         
+                  <div className='py-10 px-12 w-[950px] rounded-lg bg-white'>
+                    <div className='flex flex-col gap-10'>
+                      <div className='flex justify-between items-center'>
+                        <div className='flex flex-col gap-1'>
+                            <div className='text-sm text-[#AAAAAA]'>Monday, 14 June 2020 - 02:00pm</div>
+                            <div className='text-2xl '>Avengers: End Game</div>
+                        </div>
+                        <div>
+                            <img src={Ebv} alt="" />
+                        </div>
+                      </div>
+                      <div className='px-6 w-[850px] h-[1px] bg-[#DEDEDE]'></div>
+                      <div className='flex justify-between'>
+                        <div className='flex gap-4'>
+                            <div className='w-48 h-10 bg-[#6E719120] text-center py-1.5 text-[#6E7191] font-semibold rounded-lg'>Ticket used</div>
+                            <div className='w-48 h-10 bg-[#1D4ED820] text-center py-1.5 text-[#1D4ED8] font-semibold rounded-lg'>Paid</div>
+                        </div>
+                        <div className='text-lg text-[#AAAAAA] flex items-center gap-4'>Show Details<IoIosArrowDown /></div>
+                      </div>
+                    </div>        
+                  </div>
                 </div>
           </div>
         </section>
