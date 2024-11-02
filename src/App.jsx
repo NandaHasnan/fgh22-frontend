@@ -11,6 +11,9 @@ import PaymentModal from './page/payment-modal';
 import Ticket from './page/ticket-result';
 import Profile from './page/profile';
 import Odrhistori from './page/order-history';
+import Chart from './page/admin-chart';
+import Admmovie from './page/adm-movie';
+import Addmovie from './page/add-movie';
 // import Contac from './page/contac';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
@@ -64,6 +67,18 @@ const router = createBrowserRouter([
   {
     path: '/odrhistori',
     element: <Odrhistori />,
+  },
+  {
+    path: '/chart',
+    element: <Chart />,
+  },
+  {
+    path: '/adm-movie',
+    element: <Admmovie />,
+  },
+  {
+    path: '/add-movie',
+    element: <Addmovie />,
   },
 ]);
 
