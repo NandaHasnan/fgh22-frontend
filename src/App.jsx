@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './page/home';
 import Login from './page/login';
 import Register from './page/register';
-import Grid from './page/home-grid';
+import Movie from './page/list-movie';
 import Detail from './page/detail';
 import Order from './page/order';
 import Payment from './page/payment';
@@ -37,8 +37,8 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: '/grid',
-    element: <Grid />,
+    path: '/movie',
+    element: <Movie />,
   },
   {
     path: '/detail',

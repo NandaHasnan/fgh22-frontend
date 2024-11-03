@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Logo from '../assets/logo.png'
 // import John from './assets/gambar/john.png'
 // import Lion from './assets/gambar/lion.png'
 // import Spi from './assets/gambar/spi.png'
@@ -9,11 +8,11 @@ import Logo from '../assets/logo.png'
 // import Tenet from './assets/gambar/tenet.png'
 // import Spiderman from '../assets/gambar/spiderman.png'
 import Coverspi from '../assets/gambar/Rectangle 618.png'
-import Ebv from '../assets/gambar/ebv.id 2.png'
 import Cineone from '../assets/gambar/CineOne21 2.png'
-import Hiflix from '../assets/gambar/hiflix 2.png'
 import { Link } from 'react-router-dom';
 import { FaCheck } from "react-icons/fa6";
+import Navbar from '../components/navbar'
+import Footer from '../components/footer'
 // import { GoArrowRight } from "react-icons/go";
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
@@ -24,39 +23,25 @@ function App() {
 
   return (
     <div className=''>
-      <nav className='px-48 items-center shadow-md py-3 flex justify-between'>
-        <div><img src={Logo} alt="" /></div>
-        <ul className='flex gap-5'>
-          <li>Home</li>
-          <li>Movie</li>
-          <li>Buy Ticket</li>
-        </ul>
-        <div className='flex gap-5 '>
-          <Link to="/login" className='rounded-lg py-3 px-4 border-oren border ' href="">Login</Link>
-          <Link to="/register" className='rounded-lg py-3 px-4 bg-oren text-white' href="">SignUp</Link>
-        </div>
-      </nav>
-
-       
-
-      <main className='px-48 flex flex-col gap-10 bg-[#A0A3BD20]'>
+      <Navbar/>
+      <main className='py-8 px-48 flex flex-col gap-10 bg-[#A0A3BD20]'>
         <section className=''>
             <div className="gap-6 flex justify-center items-center mb-8">
-                    <div className='flex flex-col justify-center items-center'>
-                        <div className='flex justify-center items-center w-12 h-12 bg-[#008000] rounded-full text-center text-white'><FaCheck /></div>
-                        <div>Dates And Time</div>
-                    </div>
-                    <div className="w-16 border border-abu border-dashed"></div>
-                    <div className='flex flex-col justify-center items-center'>
-                        <div className='flex justify-center items-center w-12 h-12 bg-orenMuda rounded-full text-center '>2</div>
-                        <div>Seat</div>
-                    </div>
-                    <div className="w-16 border border-abu border-dashed"></div>
-                    <div className='flex flex-col justify-center items-center'>
-                        <div className='flex justify-center items-center w-12 h-12 bg-abu rounded-full text-center'>3</div>
-                        <div>Payment</div>
-                    </div>
-                </div>
+               <div className='flex flex-col gap-5 justify-center items-center'>
+                   <div className='flex justify-center items-center w-12 h-12 bg-[#008000] rounded-full text-center text-white'><FaCheck /></div>
+                   <div>Dates And Time</div>
+               </div>
+               <div className="w-16 border border-abu border-dashed"></div>
+               <div className='flex flex-col gap-5 justify-center items-center'>
+                   <div className='flex justify-center items-center w-12 h-12 bg-orenMuda rounded-full text-center text-white'>2</div>
+                   <div>Seat</div>
+               </div>
+               <div className="w-16 border border-abu border-dashed"></div>
+               <div className='flex flex-col gap-5 justify-center items-center'>
+                   <div className='flex justify-center items-center w-12 h-12 bg-abu rounded-full text-center text-white'>3</div>
+                   <div>Payment</div>
+               </div>
+            </div>
         </section>
 
         <section className='flex justify-center gap-4'>
@@ -72,11 +57,9 @@ function App() {
                                 <span className='rounded-lg px-2 bg-abu/40 text-abuMuda'>Action</span>
                                 <span className='rounded-lg px-2 bg-abu/40 text-abuMuda'>Adventure</span>
                             </div>
-                            <div className='flex gap-48'>
-                                <div className='text-base'>Regular - 13:00 PM</div>
-                                <div>
-                                    <button className='w-28 h-8 bg-oren text-white rounded-md'>Change</button>
-                                </div>
+                            <div className='flex justify-between gap-5'>
+                                <div className='text-base '>Regular - 13:00 PM</div>
+                                <button className='w-28 h-8 bg-oren text-white rounded-md'>Change</button>
                             </div>
                         </div>
                     </div>
@@ -273,48 +256,10 @@ function App() {
                 <Link to='/payment' className='py-3.5 w-[358px] h-14 bg-oren rounded-md text-white text-center'>Checkout now</Link>
             </div>
         </section>
-        <section className=''>
-            
-        </section>
         
       </main>
 
-      <footer className='px-48 py-24 flex flex-col gap-12'>
-          <div className='flex gap-20 justify-between'>
-              <div>
-                <img className='w-44' src={Logo} alt="" />
-                <div className='text-lg w-72'>Stop waiting in line. Buy tickets
-                conveniently, watch movies quietly.</div>
-              </div>
-              <div className='flex flex-col gap-7'>
-                <div className='text-base font-semibold '>Explore</div>
-                <ul className='flex flex-col gap-3.5 text-sm text-abu'>
-                    <li><a href="">Cinemas</a></li>
-                    <li><a href="">Movie List</a></li>
-                    <li><a href="">My Ticket</a></li>
-                    <li><a href="">Notification</a></li>
-                </ul>
-              </div>
-              <div className='flex flex-col gap-7'>
-                <div className='text-base font-semibold '>Our Sponsor</div>
-                <ul className='flex flex-col gap-6'>
-                    <li><img src={Ebv} alt="" /></li>
-                    <li><img src={Cineone} alt="" /></li>
-                    <li><img src={Hiflix} alt="" /></li>
-                </ul>
-              </div>
-              <div className='flex flex-col gap-7'>
-                <div className='text-base font-semibold '>Follow us</div>
-                <ul className='flex flex-col gap-7'>
-                    <li><img src="" alt="" /><a href="">Tickitz Cinema id</a></li>
-                    <li><img src="" alt="" /><a href="">Tickitz.id</a></li>
-                    <li><img src="" alt="" /><a href="">Tickitz.id</a></li>
-                    <li><img src="" alt="" /><a href="">Tickitz Cinema id</a></li>
-                </ul>
-              </div>
-          </div>
-          <div className='text-center text-sm'>© 2020 Tickitz. All Rights Reserved.</div>
-        </footer>
+      <Footer/>
       
     </div>
   )

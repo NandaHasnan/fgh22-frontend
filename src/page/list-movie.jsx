@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Logo from '../assets/logo.png'
 // import John from './assets/gambar/john.png'
 // import Lion from './assets/gambar/lion.png'
 // import Spi from './assets/gambar/spi.png'
@@ -8,11 +7,10 @@ import Widow from '../assets/gambar/widow.png'
 import Wiches from '../assets/gambar/wiches.png'
 import Tenet from '../assets/gambar/tenet.png'
 import Spiderman from '../assets/gambar/spiderman.png'
-import Ebv from '../assets/gambar/ebv.id 2.png'
-import Cineone from '../assets/gambar/CineOne21 2.png'
-import Hiflix from '../assets/gambar/hiflix 2.png'
 import { Link } from 'react-router-dom';
 import { GoArrowRight } from "react-icons/go";
+import Navbar from '../components/navbar'
+import Footer from '../components/footer'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
@@ -22,18 +20,7 @@ function App() {
 
   return (
     <div className=''>
-      <nav className='px-48 items-center shadow-md py-3 flex justify-between'>
-        <div><img src={Logo} alt="" /></div>
-        <ul className='flex gap-5'>
-          <li>Home</li>
-          <li>Movie</li>
-          <li>Buy Ticket</li>
-        </ul>
-        <div className='flex gap-5 '>
-          <Link to="/login" className='rounded-lg py-3 px-4 border-oren border ' href="">Login</Link>
-          <Link to="/register" className='rounded-lg py-3 px-4 bg-oren text-white' href="">SignUp</Link>
-        </div>
-      </nav>
+      <Navbar/>
 
       <section className=' bg-cover py-24 px-48 h-[462px] bg-cover-marvel'>
             <div className=''>
@@ -52,7 +39,7 @@ function App() {
                 <div className='flex flex-col gap-5'>
                     <label htmlFor="filter">Filter</label>
                     <div>
-                        <span className='px-6 py-2.5 bg-orenMuda rounded-md'>Thriller</span>
+                        <span className='px-6 py-2.5 bg-oren text-white rounded-md'>Thriller</span>
                         <span className='px-6 py-2.5'>Horror</span>
                         <span className='px-6 py-2.5'>Romantic</span>
                         <span className='px-6 py-2.5'>Adventure</span>
@@ -293,42 +280,7 @@ function App() {
           </div>
         </section>
 
-        <footer className='py-24 flex flex-col gap-12'>
-          <div className='flex gap-20 justify-between'>
-              <div>
-                <img className='w-44' src={Logo} alt="" />
-                <div className='text-lg w-72'>Stop waiting in line. Buy tickets
-                conveniently, watch movies quietly.</div>
-              </div>
-              <div className='flex flex-col gap-7'>
-                <div className='text-base font-semibold '>Explore</div>
-                <ul className='flex flex-col gap-3.5 text-sm text-abu'>
-                    <li><a href="">Cinemas</a></li>
-                    <li><a href="">Movie List</a></li>
-                    <li><a href="">My Ticket</a></li>
-                    <li><a href="">Notification</a></li>
-                </ul>
-              </div>
-              <div className='flex flex-col gap-7'>
-                <div className='text-base font-semibold '>Our Sponsor</div>
-                <ul className='flex flex-col gap-6'>
-                    <li><img src={Ebv} alt="" /></li>
-                    <li><img src={Cineone} alt="" /></li>
-                    <li><img src={Hiflix} alt="" /></li>
-                </ul>
-              </div>
-              <div className='flex flex-col gap-7'>
-                <div className='text-base font-semibold '>Follow us</div>
-                <ul className='flex flex-col gap-7'>
-                    <li><img src="" alt="" /><a href="">Tickitz Cinema id</a></li>
-                    <li><img src="" alt="" /><a href="">Tickitz.id</a></li>
-                    <li><img src="" alt="" /><a href="">Tickitz.id</a></li>
-                    <li><img src="" alt="" /><a href="">Tickitz Cinema id</a></li>
-                </ul>
-              </div>
-          </div>
-          <div className='text-center text-sm'>© 2020 Tickitz. All Rights Reserved.</div>
-        </footer>
+        <Footer/>
       </main>
       
     </div>

@@ -116,35 +116,29 @@ function App() {
             
         </section>
 
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white w-96 p-6 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-semibold text-[#14142B] text-center">Payment Info</h2>
-            
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="flex flex-col gap-8 bg-white w-[573px] h-[506px] p-6 rounded-lg shadow-lg">
+            <div className="text-2xl font-semibold text-[#14142B] text-center">Payment Info</div>
             <div className="flex items-center justify-between">
               <div className='flex'>
                 <label className="text-[#8692A6] text-sm">No. Rekening Virtual</label>
                 <label className="text-[#8692A6] text-sm">:</label>
               </div>
-              <div className="flex items-center">
-                <input type="text" readOnly value="1232132031829734" className="rounded-l-md focus:outline-none text-sm"/>
-                <button className="bg-blue-500 text-white px-3 py-2 rounded-r-md text-sm">Copy</button>
+              <div className="flex gap-5">
+                <input type="text" readOnly placeholder="1232132031829734" className="w-40 rounded-l-md focus:outline-none text-lg font-semibold"/>
+                <button className="border border-orenMuda text-oren px-3 py-2 rounded-lg text-sm">Copy</button>
               </div>
             </div>
-            
-            <div className="mb-4">
-              <label className="block text-gray-600 text-sm">Total Payment</label>
-              <div className="text-blue-500 font-semibold text-lg">$30</div>
+            <div className='flex items-center justify-between'>
+              <div className='flex'>
+                <label className="text-[#8692A6] text-sm">Total Payment</label>
+                <label className="text-[#8692A6] text-sm">:</label>
+              </div>
+              <input className='text-right text-lg placeholder:text-oren font-semibold' type="text" placeholder='$30'/>
             </div>
-            
-            <p className="text-sm text-gray-500 mb-6">
-              Pay this payment bill before its due on <span className="text-red-500">June 23, 2023</span>.
-              If the bill has not been paid by the specified time, it will be forfeited.
-            </p>
-            
-            <div className="flex gap-3">
-              <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md">Check Payment</button>
-              <Link to='/ticket' className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 rounded-md">Pay Later</Link>
-            </div>
+            <div className='text-base text-[#A0A3BD] leading-8'>Pay this payment bill before it is due, on <span className='text-base text-[#D00707]'>June 23, 2023</span>. If the bill has not been paid by the specified time, it will be forfeited</div>
+            <Link to='/ticket' className='py-3 w-[520px] rounded-md h-14 text-center font-semibold text-white bg-oren'>Check Payment</Link>
+            <Link className='py-3 w-[520px] h-14 text-center font-semibold text-oren'>Pay Later</Link>
           </div>
         </div>
         
