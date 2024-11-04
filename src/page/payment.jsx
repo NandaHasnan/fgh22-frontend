@@ -13,10 +13,6 @@ import Footer from '../components/footer'
 import { FaTimes } from 'react-icons/fa';
 import Step from '../components/step-active';
 import Step2 from '../components/step-oren';
-// import { GoArrowRight } from "react-icons/go";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
 
 function App() {
    useState(0)

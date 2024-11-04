@@ -1,8 +1,6 @@
 import { useState } from 'react'
-// import Logo from '../assets/logo.png'
+
 import { Link } from 'react-router-dom';
-// import { IoIosArrowDown } from "react-icons/io";
-// import { IoSearch } from "react-icons/io5";
 import { IoEyeOutline } from "react-icons/io5";
 import Navbar from '../components/navbar-profile';
 import InfoProfile from '../components/info-profile';

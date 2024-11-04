@@ -1,20 +1,8 @@
 import { useState } from 'react'
-// import John from './assets/gambar/john.png'
-// import Lion from './assets/gambar/lion.png'
-// import Spi from './assets/gambar/spi.png'
-// import Roblox from './assets/gambar/roblox.png'
-// import Widow from '../assets/gambar/widow.png'
-// import Wiches from '../assets/gambar/wiches.png'
-// import Tenet from '../assets/gambar/tenet.png'
-// import Spiderman from '../assets/gambar/spiderman.png'
-// import { Link } from 'react-router-dom';
 import { GoArrowRight } from "react-icons/go";
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import MovieCard from '../components/movie-card'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
 
 function App() {
    useState(0)

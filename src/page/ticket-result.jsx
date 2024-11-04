@@ -6,10 +6,6 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { HiArrowLongRight } from "react-icons/hi2";
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
-// import { GoArrowRight } from "react-icons/go";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
 
 function App() {
    useState(0)
@@ -84,11 +80,6 @@ function App() {
               <Link className='flex w-[320px] h-14 rounded-md border border-orenMuda items-center justify-center gap-6 text-oren font-semibold'><MdOutlineFileDownload />Download</Link>
               <Link to='/profil' className='w-[320px] h-14 rounded-md bg-oren text-center text-white font-semibold pt-3'>Done</Link>
             </div>
-            {/* <div className='flex'>
-                <div className='w-8 h-8 bg-oren rounded-full'></div>
-                <div className='w-72 h-1 bg-abu'></div>
-                <div className='w-8 h-8 bg-oren rounded-full'></div>
-            </div> */}
           </div>
         
       </main>

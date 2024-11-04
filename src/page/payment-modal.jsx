@@ -13,10 +13,6 @@ import Dana from '../assets/gambar/Logo DANA (PNG-240p) - FileVector69 1.png'
 import Bca from '../assets/gambar/Bank BCA Logo (SVG-240p) - FileVector69 1.png'
 import Bri from '../assets/gambar/bri.png'
 import Ovo from '../assets/gambar/ovo.png'
-// import { GoArrowRight } from "react-icons/go";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
 
 function App() {
    useState(0)
