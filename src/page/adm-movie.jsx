@@ -83,7 +83,7 @@ function App() {
                         <tbody>
                             <tr className='text-center text-sm text-[#1F4173]'>
                                 <td className='pb-4'>1</td>
-                                <td className='pb-4'><div><img src={Spi} alt="" /></div></td>
+                                <td className='pb-4 flex items-center justify-center'><div><img src={Spi} alt="" /></div></td>
                                 <td className='pb-4 text-orenMuda'>Spiderman HomeComing</td>
                                 <td className='pb-4'>Action, Adventure</td>
                                 <td className='pb-4'>07/05/2023</td>
@@ -96,7 +96,7 @@ function App() {
                             </tr>
                             <tr className='text-center text-sm text-[#1F4173]'>
                                 <td className='pb-4'>2</td>
-                                <td className='pb-4'><div><img src={Spi} alt="" /></div></td>
+                                <td className='pb-4 flex items-center justify-center'><div><img src={Spi} alt="" /></div></td>
                                 <td className='pb-4 text-orenMuda'>Avengers End Game</td>
                                 <td className='pb-4'>Sci-fi, Adventure</td>
                                 <td className='pb-4'>10/06/2023</td>
@@ -109,7 +109,7 @@ function App() {
                             </tr>
                             <tr className='text-center text-sm text-[#1F4173]'>
                                 <td className='pb-4'>3</td>
-                                <td className='pb-4'><div><img src={Spi} alt="" /></div></td>
+                                <td className='pb-4 flex items-center justify-center'><div><img src={Spi} alt="" /></div></td>
                                 <td className='pb-4 text-orenMuda'>Spiderman HomeComing</td>
                                 <td className='pb-4'>Action, Adventure</td>
                                 <td className='pb-4'>02/03/2023</td>
@@ -122,7 +122,7 @@ function App() {
                             </tr>
                             <tr className='text-center text-sm text-[#1F4173]'>
                                 <td className='pb-4'>4</td>
-                                <td className='pb-4'><div><img src={Spi} alt="" /></div></td>
+                                <td className='pb-4 flex items-center justify-center'><div><img src={Spi} alt="" /></div></td>
                                 <td className='pb-4 text-orenMuda'>Avengers End Game</td>
                                 <td className='pb-4'>Sci-fi, Adventure</td>
                                 <td className='pb-4'>01/09/2023</td>
@@ -135,7 +135,7 @@ function App() {
                             </tr>
                             <tr className='text-center text-sm text-[#1F4173]'>
                                 <td className='pb-4'>5</td>
-                                <td className='pb-4'><div><img src={Spi} alt="" /></div></td>
+                                <td className='pb-4 flex items-center justify-center'><div><img src={Spi} alt="" /></div></td>
                                 <td className='pb-4 text-orenMuda'>Spiderman HomeComing</td>
                                 <td className='pb-4'>Action, Adventure</td>
                                 <td className='pb-4'>07/08/2023</td>

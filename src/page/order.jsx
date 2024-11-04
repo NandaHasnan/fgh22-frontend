@@ -10,9 +10,11 @@ import { useState } from 'react'
 import Coverspi from '../assets/gambar/Rectangle 618.png'
 import Cineone from '../assets/gambar/CineOne21 2.png'
 import { Link } from 'react-router-dom';
-import { FaCheck } from "react-icons/fa6";
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
+import Step from '../components/step-active';
+import Step2 from '../components/step-oren';
+
 // import { GoArrowRight } from "react-icons/go";
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
@@ -25,24 +27,13 @@ function App() {
     <div className=''>
       <Navbar/>
       <main className='py-8 px-48 flex flex-col gap-10 bg-[#A0A3BD20]'>
-        <section className=''>
-            <div className="gap-6 flex justify-center items-center mb-8">
-               <div className='flex flex-col gap-5 justify-center items-center'>
-                   <div className='flex justify-center items-center w-12 h-12 bg-[#008000] rounded-full text-center text-white'><FaCheck /></div>
-                   <div>Dates And Time</div>
-               </div>
-               <div className="w-16 border border-abu border-dashed"></div>
-               <div className='flex flex-col gap-5 justify-center items-center'>
-                   <div className='flex justify-center items-center w-12 h-12 bg-orenMuda rounded-full text-center text-white'>2</div>
-                   <div>Seat</div>
-               </div>
-               <div className="w-16 border border-abu border-dashed"></div>
-               <div className='flex flex-col gap-5 justify-center items-center'>
-                   <div className='flex justify-center items-center w-12 h-12 bg-abu rounded-full text-center text-white'>3</div>
-                   <div>Payment</div>
-               </div>
-            </div>
-        </section>
+        <div className='gap-6 flex justify-center items-center mb-8'>
+            <Step status='active' content='Date and time'/>
+            <div className="w-16 border border-abu border-dashed"></div>
+            <Step2 status='not' content='Seat'/>
+            <div className="w-16 border border-abu border-dashed"></div>
+            <Step2 status='not' content='Payment'/>
+        </div>
 
         <section className='flex justify-center gap-4'>
             

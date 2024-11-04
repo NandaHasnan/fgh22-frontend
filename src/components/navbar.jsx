@@ -7,13 +7,13 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen); 
   };
 
   return (
     <nav className="px-4 md:px-12 lg:px-48 items-center shadow-md py-3 flex justify-between bg-white">
       <div>
-        <img src={Logo} alt="Logo" className="w-24" />
+        <img src={Logo} alt="Logo" />
       </div>
       <ul className="hidden md:flex gap-14">
         <Link to='/home' className="hover:text-oren cursor-pointer">Home</Link>

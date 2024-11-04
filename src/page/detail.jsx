@@ -100,17 +100,17 @@ function App() {
               <div className='text-lg text-abuMuda font-semibold'>39 Result</div>
             </div>
             <div className='flex flex-wrap gap-5 justify-between'>
-              <div className='w-full md:w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md py-11 px-16'>
+              <div className='md:hover:bg-orenMuda w-full md:w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md py-11 px-16'>
                 <img src={Ebv} alt='' />
 
               </div>
-              <div className='w-full md:w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md py-12 px-12'>
+              <div className='md:hover:bg-orenMuda w-full md:w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md py-12 px-12'>
                 <img className='w-44' src={Hiflix} alt='' />
               </div>
-              <div className='w-full md:w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md py-16 px-16'>
+              <div className='md:hover:bg-orenMuda w-full md:w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md py-16 px-16'>
                 <img src={Cineone} alt='' />
               </div>
-              <div className='w-full md:w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md py-11 px-16'>
+              <div className='md:hover:bg-orenMuda w-full md:w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md py-11 px-16'>
                 <img src={Ebv} alt='' />
               </div>
             </div>

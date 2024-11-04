@@ -1,30 +1,15 @@
 import { useState } from 'react'
-import Logo from '../assets/logo.png'
-import Profile from '../assets/gambar/P-profile.png'
 import Ebv from '../assets/gambar/ebv.id 2.png'
 import Cineone from '../assets/gambar/CineOne21 2.png'
 import Hiflix from '../assets/gambar/hiflix 2.png'
 import { Link } from 'react-router-dom';
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import { IoSearch } from "react-icons/io5";
-import { SlOptions } from "react-icons/sl";
-import { FaStar } from "react-icons/fa6";
 import Barcode from '../assets/gambar/barcode.png'
-// import { IoEyeOutline } from "react-icons/io5";
-// import { FaCheck } from "react-icons/fa6";
-// import Google from '../assets/gambar/logos_google-pay.png'
-// import Visa from '../assets/gambar/logos_visa.png'
-// import Gopay from '../assets/gambar/Logo GoPay (SVG-240p) - FileVector69 1.png'
-// import Paypal from '../assets/gambar/logos_paypal.png'
-// import Dana from '../assets/gambar/Logo DANA (PNG-240p) - FileVector69 1.png'
-// import Bca from '../assets/gambar/Bank BCA Logo (SVG-240p) - FileVector69 1.png'
-// import Bri from '../assets/gambar/bri.png'
-// import Ovo from '../assets/gambar/ovo.png'
-// import { GoArrowRight } from "react-icons/go";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+import InfoProfile from '../components/info-profile'
+import AccountProfile from '../components/account-profile'
+import Navbar from '../components/navbar-profile'
+
 
 function App() {
    useState(0)
@@ -32,60 +17,14 @@ function App() {
   const [isShow2, setShow2] = useState(false);
   return (
     <div className=''>
-      <nav className='px-48 items-center shadow-md py-3 flex justify-between'>
-        <div><img src={Logo} alt="" /></div>
-        <ul className='flex gap-5'>
-          <li>Home</li>
-          <li>Movie</li>
-          <li>Buy Ticket</li>
-        </ul>
-        {/* <div className='flex gap-5 '>
-          <Link to="/login" className='rounded-lg py-3 px-4 border-oren border ' href="">Login</Link>
-          <Link to="/register" className='rounded-lg py-3 px-4 bg-oren text-white' href="">SignUp</Link>
-        </div> */}
-        <div className='flex items-center gap-3'>
-            <div>Location</div>
-            <Link to='/chart'><IoIosArrowDown /></Link>
-            <div><IoSearch /></div>
-            <div><img className='w-14 h14' src={Profile} alt="" /></div>
-        </div>
-      </nav>
+      <Navbar/>
 
       <main>
         <section className='px-16 py-14 h-[1400px] bg-[#A0A3BD20]'>
           <div className='flex gap-8 justify-center'>
-                <div className='flex flex-col gap-8 w-80 h-[783px] px-10 pt-10 pb-24 rounded-lg bg-white'>
-                    <div className='flex justify-between'>
-                        <div>INFO</div>
-                        <div><SlOptions /></div>
-                    </div>
-                    <div className='flex flex-col gap-8'>
-                        <div className='px-9'>
-                            <img className='' src={Profile} alt="" />
-                        </div>
-                        <div className='flex flex-col gap-1'>
-                            <div className='text-center text-xl font-semibold text-[#14142B]'>Jonas El Rodriguez</div>
-                            <div className='text-center text-sm text-[#4E4B66]'>Moviegoers</div>
-                        </div>
-                    </div>
-                    <div className='w-60 h-[1px] bg-[#DEDEDE]'></div>
-                    <div className='text-base'>Loyalty Points</div>
-                    <div className='rounded-xl py-4 px-4 flex flex-col gap-5 w-[235px] h-32 bg-oren'>
-                      <div className='text-lg text-white font-medium flex items-center justify-between'>Moviegoers<FaStar className='w-10 h-10 rotate-45 text-[#FFC107]' /></div>
-                      <div className='text-2xl text-white font-medium'>320<span className='text-[10px] text-white font-medium items-end'>points</span></div>
-                    </div>
-                    <div className='justify-center flex flex-col gap-2'>
-                      <div className='text-center'>180 points become a master</div>
-                      <div className='w-[248px] h-4 bg-[#F5F6F8] rounded-full'><div className='w-[126px] h-4 bg-orenMuda rounded-full'></div></div>
-                    </div>
-                </div>
+                <InfoProfile/>
                 <div className='flex flex-col gap-12'>
-                  <div className='py-6 px-12 w-[950px] h-20 rounded-lg bg-white'>
-                    <div className='flex gap-14'>
-                      <Link to='/profil' className='text-lg text-[#AAAAAA]'>Account Settings</Link>
-                      <Link to='/order' className='text-lg text-[#14142B]'>Order History</Link>
-                    </div>
-                  </div>
+                  <AccountProfile status='not' content='Account Profile' status2='active' content2='Order History'/>
                   <div className='py-10 px-12 w-[950px] rounded-lg bg-white'>
                     <div className='flex flex-col gap-10'>
                       <div className='flex justify-between items-center'>
@@ -126,7 +65,7 @@ function App() {
                             <input className='text-lg placeholder:text-oren font-semibold text-right' type="text" id='va' name='va' placeholder='$30' />
                           </div>
                           <div className='text-base text-[#A0A3BD] leading-8'>Pay this payment bill before it is due, on <span className='text-base text-[#D00707]'>June 23, 2023</span>. If the bill has not been paid by the specified time, it will be forfeited</div>
-                          <Link className='w-48 h-12 bg-oren rounded-lg text-center py-2.5 text-white'>Cek Pembayaran</Link>
+                          <Link to='/chart' className='w-48 h-12 bg-oren rounded-lg text-center py-2.5 text-white'>Cek Pembayaran</Link>
                         </div>
                       </>
                         

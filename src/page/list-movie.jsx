@@ -3,14 +3,15 @@ import { useState } from 'react'
 // import Lion from './assets/gambar/lion.png'
 // import Spi from './assets/gambar/spi.png'
 // import Roblox from './assets/gambar/roblox.png'
-import Widow from '../assets/gambar/widow.png'
-import Wiches from '../assets/gambar/wiches.png'
-import Tenet from '../assets/gambar/tenet.png'
-import Spiderman from '../assets/gambar/spiderman.png'
-import { Link } from 'react-router-dom';
+// import Widow from '../assets/gambar/widow.png'
+// import Wiches from '../assets/gambar/wiches.png'
+// import Tenet from '../assets/gambar/tenet.png'
+// import Spiderman from '../assets/gambar/spiderman.png'
+// import { Link } from 'react-router-dom';
 import { GoArrowRight } from "react-icons/go";
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
+import MovieCard from '../components/movie-card'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
@@ -50,215 +51,23 @@ function App() {
         </section>
 
         <section className='flex flex-col gap-10'>
-            <div className='flex gap-10 justify-between'>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Widow} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>Black Widow</div>
-                <div className='text-oren text-base font-semibold'>December 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Action</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Adventure</span>
-                </div>
-              </div>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Wiches} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link to='/detail' className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>The Witches</div>
-                <div className='text-oren text-base font-semibold'>January 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Comedy</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Adventure</span>
-                </div>
-              </div>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Tenet} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link to='/detail' className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>Tenet</div>
-                <div className='text-oren text-base font-semibold'>June 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Action</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Sci-Fi</span>
-                </div>
-              </div>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Spiderman} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link to='/detail' className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>Spiderman</div>
-                <div className='text-oren text-base font-semibold'>March 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Action</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Adventure</span>
-                </div>
-              </div>
+            <div className='overflow-x-auto flex gap-10 justify-between'>
+              <MovieCard title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
+              <MovieCard title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
+              <MovieCard title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
+              <MovieCard title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
             </div>
-            <div className='flex gap-10 justify-between'>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Widow} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>Black Widow</div>
-                <div className='text-oren text-base font-semibold'>December 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Action</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Adventure</span>
-                </div>
-              </div>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Wiches} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link to='/detail' className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>The Witches</div>
-                <div className='text-oren text-base font-semibold'>January 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Comedy</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Adventure</span>
-                </div>
-              </div>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Tenet} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link to='/detail' className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>Tenet</div>
-                <div className='text-oren text-base font-semibold'>June 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Action</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Sci-Fi</span>
-                </div>
-              </div>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Spiderman} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link to='/detail' className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>Spiderman</div>
-                <div className='text-oren text-base font-semibold'>March 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Action</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Adventure</span>
-                </div>
-              </div>
+            <div className='overflow-x-auto flex gap-10 justify-between'>
+              <MovieCard title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
+              <MovieCard title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
+              <MovieCard title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
+              <MovieCard title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
             </div>
-            <div className='flex gap-10 justify-between'>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Widow} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>Black Widow</div>
-                <div className='text-oren text-base font-semibold'>December 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Action</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Adventure</span>
-                </div>
-              </div>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Wiches} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link to='/detail' className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>The Witches</div>
-                <div className='text-oren text-base font-semibold'>January 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Comedy</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Adventure</span>
-                </div>
-              </div>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Tenet} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link to='/detail' className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>Tenet</div>
-                <div className='text-oren text-base font-semibold'>June 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Action</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Sci-Fi</span>
-                </div>
-              </div>
-              <div className='flex flex-col gap-5'>
-                <div className='flex  justify-center items-center'>
-                  <div className='group  rounded-xl overflow-hidden'>
-                    <img className='absolute' src={Spiderman} alt="" />
-                    <div className='flex-col gap-2 relative w-[264px] h-[405px] bg-[rgb(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                      <Link to='/detail' className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                      <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                    </div>
-                  </div>
-                </div>
-                <div className='text-2xl font-semibold'>Spiderman</div>
-                <div className='text-oren text-base font-semibold'>March 2024</div>
-                <div className='flex gap-1'>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Action</span>
-                  <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Adventure</span>
-                </div>
-              </div>
+            <div className='overflow-x-auto flex gap-10 justify-between'>
+              <MovieCard title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
+              <MovieCard title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
+              <MovieCard title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
+              <MovieCard title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
             </div>
             <div className='flex gap-5 justify-center text-center text-white'>
               <div className='flex w-10 h-10 bg-orenMuda rounded-full justify-center items-center'>1</div>

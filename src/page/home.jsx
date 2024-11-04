@@ -15,27 +15,9 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
+import MovieCard from '../components/movie-card'
+import Subscribe from '../components/subcribe'
 
-function MovieCard() {
-  return (
-    <div className='flex-shrink-0 flex flex-col gap-5'>
-            <div className='flex justify-center items-center'>
-              <div className='group rounded-xl overflow-hidden relative'>
-                <img className='w-[264px] h-[405px] rounded-md' src={Td} alt="Movie poster" />
-                <div className='flex-col gap-2 absolute inset-0 bg-[rgba(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
-                  <Link to='/detail' className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>Detail</Link>
-                  <Link className='w-44 h-12 bg-oren text-white text-center rounded-md py-2.5'>Buy Ticket</Link>
-                </div>
-              </div>
-            </div>
-            <div className='text-2xl font-semibold'>Black Widow</div>
-            <div className='flex gap-1'>
-              <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Action</span>
-              <span className='rounded-lg px-2 bg-[#A0A3BD10] text-[#A0A3BD]'>Adventure</span>
-            </div>
-          </div>
-  )
-}
 
 function App() {
    useState(0)
@@ -89,17 +71,12 @@ function App() {
             <div className='text-3xl w-full sm:w-[545px] mx-auto'>Exciting Movies That Should Be Watched Today</div>
           </div>
 
-          <div className=' overflow-x-auto flex gap-10 px-4'>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
+          <div className=' overflow-x-auto justify-between flex gap-10 px-4'>
+            <MovieCard title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
+            <MovieCard title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
+            <MovieCard title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
+            <MovieCard title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
+            
             {/* <div className='flex space-x-10 min-w-full'>
               <div className='flex flex-col gap-5'>
                 <div className='flex justify-center items-center'>
@@ -275,15 +252,11 @@ function App() {
               <button className='p-5 text-white text-2xl w-16 h-16 bg-oren rounded-full'><FaArrowRightLong /></button>
             </div>
           </div>
-            <div className='overflow-x-scroll flex gap-10 justify-between'>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
-            <MovieCard/>
+            <div className='overflow-x-auto flex gap-10 justify-between'>
+            <MovieCard title='Tebusan Dosa' genre1='Horror' genre2='Advanture' date='December 2024'/>
+            <MovieCard title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture' date='January 2025'/>
+            <MovieCard title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture' date='Februari 2025'/>
+            <MovieCard title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture' date='Maret 2025'/>
 
               {/* <div className='flex flex-col gap-5'>
                 <div className='flex  justify-center items-center'>
@@ -355,15 +328,15 @@ function App() {
               </div> */}
             </div>
         </section>
-
-        <section className='w-full h-72 bg-oren py-20 flex flex-col gap-12 rounded-lg'>
+        <Subscribe/>
+        {/* <section className='w-full h-72 bg-oren py-20 flex flex-col gap-12 rounded-lg'>
           <div className='text-5xl text-white text-center'>Subscribe to our newsletter</div>
           <div className='flex flex-col sm:flex-row gap-2.5 justify-center'>
             <input className='p-4 border-white border bg-oren text-white placeholder:text-white rounded-lg' type="text" placeholder='First name'/>
             <input className='p-4 border-white border bg-oren text-white placeholder:text-white rounded-lg' type="text" placeholder='Email address'/>
             <button className='bg-white py-4 px-11 rounded-lg text-oren'>Subscribe Now</button>
           </div>
-        </section>
+        </section> */}
         
         <Footer/>
       </main>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Logo from '../assets/logo.png';
 import Profile from '../assets/gambar/P-profile.png'
@@ -16,10 +16,10 @@ function Navbar() {
   return (
     <nav className="px-4 md:px-12 lg:px-48 items-center shadow-md py-3 flex justify-between bg-white">
       <div><img src={Logo} alt="" /></div>
-        <ul className='hidden md:flex gap-5'>
-          <li>Home</li>
-          <li>Movie</li>
-          <li>Buy Ticket</li>
+        <ul className='hidden md:flex gap-14'>
+          <Link to='/home' className="hover:text-oren cursor-pointer">Home</Link>
+          <Link to='/movie' className="hover:text-oren cursor-pointer">Movie</Link>
+          <Link to='/order' className="hover:text-oren cursor-pointer">Buy Ticket</Link>
         </ul>
         <div className='hidden md:flex items-center gap-3'>
             <div>Location</div>
