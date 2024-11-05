@@ -11,22 +11,27 @@ import Ebv from '../assets/gambar/ebv.id 2.png'
 function TicketPaid(props) {
     const [isShow, setShow] = useState(false);
     return ( 
-        <div className='py-10 px-12 w-[950px] rounded-lg bg-white'>
+        <div className='py-10 px-12 w-[327px] md:w-[950px] rounded-lg bg-white'>
           <div className='flex flex-col gap-10'>
             <div className='flex justify-between items-center'>
               <div className='flex flex-col gap-1'>
-                  <div className='text-sm text-[#AAAAAA]'>Monday, 14 June 2020 - 02:00pm</div>
-                  <div className='text-2xl '>Avengers: End Game</div>
+                  <div className="md:hidden w-32">
+                      {/* <img src={Hiflix} alt="" /> */}
+                      {props.title === 'Hiflix' &&<img src={Hiflix} alt="" />}
+                      {props.title === 'Ebv.id' &&<img src={Ebv} alt="" />}
+                  </div>
+                  <div className='text-xs md:text-sm text-[#AAAAAA]'>Monday, 14 June 2020 - 02:00pm</div>
+                  <div className='text-base md:text-2xl '>Avengers: End Game</div>
               </div>
-              <div>
+              <div className="hidden md:block">
                   {/* <img src={Hiflix} alt="" /> */}
                   {props.title === 'Hiflix' &&<img src={Hiflix} alt="" />}
                   {props.title === 'Ebv.id' &&<img src={Ebv} alt="" />}
               </div>
             </div>
-            <div className='px-6 w-[850px] h-[1px] bg-[#DEDEDE]'></div>
-            <div className='flex justify-between'>
-              <div className='flex gap-4'>
+            <div className='px-6 w-full h-[1px] bg-[#DEDEDE]'></div>
+            <div className='md:flex md:flex-row flex flex-col gap-4 justify-center items-center md:justify-between'>
+              <div className='md:flex md:flex-row flex flex-col gap-4'>
                   <div className='w-48 h-10 bg-[#6E719120] text-center py-1.5 text-[#6E7191] font-semibold rounded-lg'>Ticket used</div>
                   <div className='w-48 h-10 bg-[#1D4ED820] text-center py-1.5 text-[#1D4ED8] font-semibold rounded-lg'>Paid</div>
               </div>
@@ -34,8 +39,8 @@ function TicketPaid(props) {
             </div>
             {isShow && ( <>
               <div className='text-lg text-[#14142B]'>Ticket Information</div>
-              <div className='px-12 flex gap-12 items-center'> 
-                <img className='w-44 h-44' src={Barcode} alt="" />
+              <div className='md:px-12 md:flex md:flex-row flex flex-col gap-12 items-start md:items-center'> 
+                <img className='md:w-44 md:h-44 w-32 h-32' src={Barcode} alt="" />
                 <div className='flex flex-col gap-5 justify-center'>
                   <div className='flex gap-6'>
                     <div>

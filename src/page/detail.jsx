@@ -6,9 +6,11 @@ import Hiflix from '../assets/gambar/hiflix 2.png';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 
 function App() {
-  useState(0);
+  const [isShow, setShow] = useState(false);
 
   return (
     <div className=''>
@@ -65,7 +67,8 @@ function App() {
 
         <section>
           <div className='flex flex-col gap-9'>
-            <div className='text-3xl font-medium'>Book Tickets</div>
+            <div className='text-3xl font-medium hidden md:block'>Book Tickets</div>
+            <div className='text-lg text-center font-medium md:hidden'>Showtimes and Tickets</div>
             <div className='flex flex-col lg:flex-row gap-6 lg:justify-between'>
               <div className='flex flex-col gap-2'>
                 <label htmlFor='event' className='text-gray-600 font-semibold'>Choose Date</label>
@@ -75,7 +78,7 @@ function App() {
                   <option value=''>23/07/2024</option>
                 </select>
               </div>
-              <div className='flex flex-col gap-2'>
+              <div className='hidden md:flex flex-col gap-2'>
                 <label htmlFor='event' className='text-gray-600 font-semibold'>Choose Time</label>
                 <select className='py-3.5 px-6 md:px-10 lg:px-16 w-full md:w-60 lg:w-72 rounded-md bg-abuMuda2 focus:outline-none' id='event' name='event'>
                   <option value=''>08.30</option>
@@ -91,18 +94,61 @@ function App() {
                     <option value=''>Madiun</option>
                     <option value=''>Semarang</option>
                   </select>
-                  <button className='bg-oren px-20 rounded-md text-white'>Filter</button>
+                  <button className='bg-oren h-14 md:px-20 rounded-md text-white'>Filter</button>
                 </div>
               </div>
             </div>
-            <div className='flex gap-8'>
-              <div className='text-xl font-semibold'>Choose Cinema</div>
+            <div className='flex gap-8 items-center justify-center md:items-start md:justify-start'>
+              <div className='text-xl font-semibold hidden md:block'>Choose Cinema</div>
               <div className='text-lg text-abuMuda font-semibold'>39 Result</div>
             </div>
             <div className='flex flex-wrap gap-5 justify-between'>
-              <div className='md:hover:bg-orenMuda w-full md:w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md py-11 px-16'>
+              <div className='md:hover:bg-orenMuda w-full md:w-[264px] md:h-[157px] border-2 border-abuMuda3 rounded-md px-8 py-3 md:py-11 md:px-16'>
                 <img src={Ebv} alt='' />
+                <div className='md:hidden flex flex-col gap-5'>
+                  <div className=' flex justify-between'>
+                    <div className='text-2xl'>EBV.id</div>
+                    <button onClick={() =>setShow(!isShow)} className='text-lg flex items-center gap-4'>{!isShow && <IoIosArrowDown />}{isShow && <IoIosArrowUp />}</button>
+                  </div>
+                  <div className=' text-xs text-[#6E7191]'>Whatever street No.12, South Purwokerto</div>
+                  {isShow && ( <>
+                      <div className='flex flex-col gap-7'>
+                        <div className='w-full h-[1px] bg-[#DEDEDE] '></div>
+                        <div className='text-xl font-medium'>REGULAR</div>
+                        <div className='grid grid-cols-2 gap-7'>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-orenMuda rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                        </div>
+                        <div className='text-xl font-medium'>GOLD</div>
+                        <div className='grid grid-cols-2 gap-7'>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-orenMuda rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                        </div>
+                        <div className='text-xl font-medium'>PLATINUM S</div>
+                        <div className='grid grid-cols-2 gap-7'>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-orenMuda rounded-full text-center text-sm py-1'>08:30 AM</div>
+                          <div className='w-20 h-8 bg-[#A0A3BD20] rounded-full text-center text-sm py-1'>08:30 AM</div>
+                        </div>
+                      </div>
 
+                  </>
+                   )}
+                </div>
               </div>
               <div className='md:hover:bg-orenMuda w-full md:w-[264px] h-[157px] border-2 border-abuMuda3 rounded-md py-12 px-12'>
                 <img className='w-44' src={Hiflix} alt='' />

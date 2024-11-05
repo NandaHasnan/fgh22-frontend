@@ -5,6 +5,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import Navbar from '../components/navbar-profile';
 import InfoProfile from '../components/info-profile';
 import AccountProfile from '../components/account-profile';
+import AccountMobile from '../components/account-mobile';
 
 function App() {
    useState(0)
@@ -12,11 +13,14 @@ function App() {
   return (
     <div className=''>
       <Navbar/>
+      <div className='md:hidden'>
+        <AccountMobile status='active' content='Account Profile' status2='not' content2='Order History'/>
+      </div>
       <main>
         <section className='px-16 py-14 h-[1400px] bg-[#A0A3BD20]'>
           <div className='flex gap-8 justify-center'>
                 <InfoProfile/>  
-                <div className='flex flex-col gap-12'>
+                <div className='hidden md:flex flex-col gap-12'>
                   <AccountProfile status='active' content='Account Profile' status2='not' content2='Order History'/>
                   <div className='py-10 px-12 w-[950px] h-[418px] rounded-lg bg-white'>
                     <div className='flex flex-col gap-12'>
