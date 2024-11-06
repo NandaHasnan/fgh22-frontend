@@ -3,56 +3,45 @@ import { useEffect } from 'react';
 import Logo from '../assets/gambar/logo2.png';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from 'react-redux';
+import {login as loginAction} from './redux/reducers/auth'
+import {setProfile} from './redux/reducers/profile'
 
 function App() {
-  const [sukses, setSukses] = useState(false);
-  const [gagal, setGagal] = useState(false);
-  const navigate = useNavigate()
+  useState(0)
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const data = [
-    {
-      email: 'admin@mail.com',
-      password: '12345',
-    },
-    {
-      email: 'user@mail.com',
-      password: '12345',
-    }
-  ];
-  const onSubmit = (e)=>{
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    const email = formData.get('email')
-    const password = formData.get('password')
-    const found = data.find(user => user.email === email)
-    if(!found || found.password !== password){
-      setGagal(true)
-      setTimeout(() =>
-        setGagal(false)
-       
-      ,2000);
-      return
-    }
-    // if(found.password !== password){
-    //   setTimeout(() =>
-    //     setSukses(true)
-       
-    //   ,2000);
-    //   return
-    // }
-    setSukses(true)
-      setTimeout(() =>{
-        setSukses(false)
-      navigate('/home')
-  },2000);
-    // setSukses(false)
-    
+const dispatch = useDispatch()
+const users = useSelector((state) => state.users.data)
+const token = useSelector((state) => state.auth.token)
+const navigate = useNavigate()
+const onSubmit = (e) => {
+  e.preventDefault();
+  const form = new FormData(e.target);
+  const email = form.get('email');
+  const password = form.get('password');
+  const found = users.find(user => user.mail === email)
+  if(!found){
+    window.alert('wrong')
+    return
   }
+  if(found.password !== password){
+    window.alert('wrong')
+    return
+  }
+  dispatch(loginAction('abc'))
+  dispatch(setProfile(found))
+};
+
+useEffect(() => {
+  if(token !== '') {
+    navigate('/profile')
+  }
+}, [token])
+
   return (
     <div className="bg-bg-marvel bg-no-repeat bg-cover h-screen bg-center flex items-center justify-center">
       <div className="w-full max-w-md mx-4 md:mx-auto">
@@ -60,15 +49,10 @@ function App() {
           <img className="w-32 md:w-40" src={Logo} alt="Tickitz Logo" />
         </div>
         <div className="bg-white shadow-lg rounded-lg p-6 md:p-8">
-          <form onSubmit={onSubmit} className="flex flex-col gap-6">
+          <form onSubmit={onSubmit}  className="flex flex-col gap-6">
             <div className='text-2xl md:text-3xl font-bold'>Welcome Back👋</div>
             <div className='text-base md:text-lg text-gray-500'>Sign in with your data that you entered during your registration</div>
-            {sukses && (
-            <div className='w-full h-14 text-center text-white py-4 bg-green-600'>Succes</div>
-            )}
-            {gagal && (
-            <div className='w-full h-14 text-center text-white py-4 bg-red'>Wrong email or password</div>
-            )}
+            
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="text-gray-600">Email</label>
               <input className="py-2 md:py-3 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"

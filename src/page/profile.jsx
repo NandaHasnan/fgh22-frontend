@@ -6,12 +6,14 @@ import Navbar from '../components/navbar-profile';
 import InfoProfile from '../components/info-profile';
 import AccountProfile from '../components/account-profile';
 import AccountMobile from '../components/account-mobile';
+import { useSelector } from 'react-redux';
 
 function App() {
    useState(0)
    useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const user = useSelector(state => state.profile.data)
   return (
     <div className='flex-wrap'>
       <Navbar/>
@@ -41,7 +43,7 @@ function App() {
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="email">E-mail</label>
-                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder='jonasrodrigu123@gmail.com'/>
+                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder='jonasrodrigu123@gmail.com' defaultValue={user.email}/>
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="number">Phone Number</label>
@@ -63,7 +65,7 @@ function App() {
                             <span className="absolute inset-y-0 right-12 flex items-center pointer-events-none">
                               <IoEyeOutline className="text-[#A0A3BD]" />
                             </span>
-                            <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg focus:outline-none' type="text" id='con-pass' name='con-pass' placeholder='Write your password'/>
+                            <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg focus:outline-none' type="text" id='con-pass' name='con-pass' placeholder='Write your password' />
                           </div>
                         </div>
                         <div className='flex flex-col gap-3'>
