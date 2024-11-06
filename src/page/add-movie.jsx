@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { RiAddLargeFill } from "react-icons/ri";
 import NavbarAdmin from '../components/navbar-admin';
@@ -6,7 +7,9 @@ import NavbarAdmin from '../components/navbar-admin';
 
 function App() {
    useState(0)
-
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className=''>
       <NavbarAdmin/>

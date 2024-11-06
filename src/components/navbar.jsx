@@ -37,9 +37,9 @@ function Navbar() {
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-white shadow-md md:hidden">
           <ul className="flex flex-col gap-4 p-4">
-            <li className="hover:text-oren cursor-pointer" onClick={toggleMenu}>Home</li>
-            <li className="hover:text-oren cursor-pointer" onClick={toggleMenu}>Movie</li>
-            <li className="hover:text-oren cursor-pointer" onClick={toggleMenu}>Buy Ticket</li>
+            <Link to='/home'  className="hover:text-oren cursor-pointer" onClick={toggleMenu}>Home</Link>
+            <Link to='/movie' className="hover:text-oren cursor-pointer" onClick={toggleMenu}>Movie</Link>
+            <Link to='/order' className="hover:text-oren cursor-pointer" onClick={toggleMenu}>Buy Ticket</Link>
           </ul>
           <div className="flex flex-col gap-4 p-4">
             <Link to="/login" className="rounded-lg py-2 px-4 border border-orenMuda text-oren hover:bg-orenMuda hover:text-white text-center">

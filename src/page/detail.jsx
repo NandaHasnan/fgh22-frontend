@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import Spiderman from '../assets/gambar/spiderman.png';
 import Ebv from '../assets/gambar/ebv.id 2.png';
 import Cineone from '../assets/gambar/CineOne21 2.png';
@@ -11,7 +12,9 @@ import { IoIosArrowUp } from "react-icons/io";
 
 function App() {
   const [isShow, setShow] = useState(false);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className=''>
       <Navbar />

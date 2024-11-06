@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import Logo from '../assets/gambar/logo2.png';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
@@ -7,7 +8,9 @@ import { IoEyeOutline } from "react-icons/io5";
 
 function App() {
   useState();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="bg-bg-marvel bg-cover h-screen bg-center flex items-center justify-center px-4 sm:px-8">
       <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">

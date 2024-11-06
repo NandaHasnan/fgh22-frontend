@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Logo2 from '../assets/gambar/logo2.png';
 import Barcode from '../assets/gambar/barcode.png';
@@ -9,7 +10,9 @@ import Footer from '../components/footer';
 
 function App() {
    useState(0);
-
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className=''>
       <Navbar/>
@@ -31,7 +34,7 @@ function App() {
           <div className=' pt-10 lg:pt-20 px-10 lg:px-28 flex flex-col gap-6 w-full lg:w-[40%]'>
             <div className='flex flex-col gap-48 w-[327px] lg:gap-28 rounded-md lg:w-80 h-auto lg:h-[635px] bg-white p-6'>
                 <div className='flex justify-center py-8'>
-                  <img className='w-32 lg:w-44 h-32 lg:h-44' src={Barcode} alt="" />
+                  <img className='w-44 h-44' src={Barcode} alt="" />
                 </div>
                 <div className='flex flex-col gap-6'>
                   <div className='flex flex-wrap justify-between px-6'>

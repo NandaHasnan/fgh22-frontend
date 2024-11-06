@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react';
 import { GoArrowRight } from "react-icons/go";
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
@@ -6,7 +7,9 @@ import MovieCard from '../components/movie-card'
 
 function App() {
    useState(0)
-
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className=''>
       <Navbar/>

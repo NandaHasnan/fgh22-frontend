@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react';
 import Spi from '../assets/gambar/Rectangle 119.png'
 import { Link } from 'react-router-dom';
 import { IoEye } from "react-icons/io5";
@@ -12,7 +13,9 @@ import { IoMdAdd } from "react-icons/io";
 
 function App() {
    useState(0)
-
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className=''>
       <NavbarAdmin/>

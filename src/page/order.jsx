@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react';
 import Coverspi from '../assets/gambar/Rectangle 618.png'
 import Cineone from '../assets/gambar/CineOne21 2.png'
 import { Link } from 'react-router-dom';
@@ -10,7 +11,9 @@ import Seat from '../components/grid-seat';
 
 function App() {
     const [isShow, setShow] = useState(false);
-
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   return (
     <div className=''>
       <Navbar/>
@@ -82,7 +85,7 @@ function App() {
           </div>
 
           {isShow && ( <>
-            <div className=" md:block fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">  
+            <div className="px-6 md:block fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">  
               <div className='flex flex-col gap-10'>
                 <div className='flex flex-col gap-10 py-4 md:pt-4 px-5 w-full lg:w-[358px] h-full lg:h-[413px] bg-white rounded-md'>
                   <div className='flex flex-col gap-3'>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react';
 import Cdi from '../assets/gambar/Cinta Dalam Ikhlas.jpg'
 import Beit from '../assets/gambar/Bila Esok Ibu Tiada.jpg'
 import Td from '../assets/gambar/Tebusan Dosa.jpg'
@@ -21,7 +22,9 @@ import Subscribe from '../components/subcribe'
 
 function App() {
    useState(0)
-
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className=''>
       <Navbar/>

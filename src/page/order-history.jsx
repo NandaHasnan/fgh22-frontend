@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react';
 import InfoProfile from '../components/info-profile'
 import Navbar from '../components/navbar-profile'
 import HistoryOrder from '../components/history-order';
@@ -9,7 +10,9 @@ import OrderMobile from '../components/order-mobile';
 
 function App() {
    useState(0)
-  
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className=''>
       <Navbar/>

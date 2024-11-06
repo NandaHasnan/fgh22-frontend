@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import { useEffect } from 'react';
 import NavbarAdmin from '../components/navbar-admin';
 import GraphChart from '../components/chart-com';
 
 function App() {
    useState(0)
-
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className=''>
       <NavbarAdmin/>

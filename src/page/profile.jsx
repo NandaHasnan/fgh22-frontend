@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
 import Navbar from '../components/navbar-profile';
@@ -9,9 +9,11 @@ import AccountMobile from '../components/account-mobile';
 
 function App() {
    useState(0)
-
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
-    <div className=''>
+    <div className='flex-wrap'>
       <Navbar/>
       <div className='md:hidden'>
         <AccountMobile status='active' content='Account Profile' status2='not' content2='Order History'/>

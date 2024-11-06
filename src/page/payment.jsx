@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Google from '../assets/gambar/logos_google-pay.png';
 import Visa from '../assets/gambar/logos_visa.png';
@@ -15,9 +16,10 @@ import Step from '../components/step-active';
 import Step2 from '../components/step-oren';
 
 function App() {
-   useState(0);
    const [isShow, setShow] = useState(false);
-
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="">
       <Navbar />
@@ -80,26 +82,26 @@ function App() {
       </main>
 
       {isShow && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="flex flex-col gap-8 bg-white w-full max-w-lg md:w-[573px] h-auto md:h-[506px] p-6 rounded-lg shadow-lg">
+        <div className="px-6 fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="flex flex-col md:gap-8 gap-3 bg-white w-full max-w-lg md:w-[573px] h-auto md:h-[550px] p-6 rounded-lg shadow-lg">
             <button onClick={() => setShow(!isShow)}><FaTimes className="text-2xl" /></button>
             <div className="text-xl md:text-2xl font-semibold text-[#14142B] text-center">Payment Info</div>
-            <div className="flex items-center justify-between">
+            <div className="md:flex md:flex-row flex flex-col md:items-center gap-2.5 justify-between">
               <div className="flex">
                 <label className="text-[#8692A6] text-sm">No. Rekening Virtual</label>
                 <span className="ml-1 text-[#8692A6] text-sm">:</span>
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-3 justify-between ">
                 <input type="text" readOnly placeholder="1232132031829734" className="w-40 rounded-l-md focus:outline-none text-lg font-semibold" />
                 <button className="border border-orenMuda text-oren px-3 py-2 rounded-lg text-sm">Copy</button>
               </div>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="md:flex md:flex-row flex flex-col md:items-center gap-2.5 justify-between">
               <div className="flex">
                 <label className="text-[#8692A6] text-sm">Total Payment</label>
                 <span className="ml-1 text-[#8692A6] text-sm">:</span>
               </div>
-              <input className="text-right text-lg placeholder:text-oren font-semibold" type="text" placeholder="$30" />
+              <input className="md:text-right text-lg placeholder:text-oren font-semibold" type="text" placeholder="$30" />
             </div>
             <div className="text-sm md:text-base text-[#A0A3BD] leading-7 md:leading-8">
               Pay this payment bill before it is due, on <span className="text-sm md:text-base text-[#D00707]">June 23, 2023</span>.
