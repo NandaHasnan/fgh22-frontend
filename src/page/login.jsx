@@ -1,46 +1,46 @@
 import { useState } from 'react';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import Logo from '../assets/gambar/logo2.png';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
-import { useDispatch, useSelector } from 'react-redux';
-import {login as loginAction} from './redux/reducers/auth'
-import {setProfile} from './redux/reducers/profile'
+// import { useDispatch, useSelector } from 'react-redux';
+// import {login as loginAction} from './redux/reducers/auth'
+// import {setProfile} from './redux/reducers/profile'
 
 function App() {
   useState(0)
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-const dispatch = useDispatch()
-const users = useSelector((state) => state.users.data)
-const token = useSelector((state) => state.auth.token)
-const navigate = useNavigate()
-const onSubmit = (e) => {
-  e.preventDefault();
-  const form = new FormData(e.target);
-  const email = form.get('email');
-  const password = form.get('password');
-  const found = users.find(user => user.mail === email)
-  if(!found){
-    window.alert('wrong')
-    return
-  }
-  if(found.password !== password){
-    window.alert('wrong')
-    return
-  }
-  dispatch(loginAction('abc'))
-  dispatch(setProfile(found))
-};
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
+// const dispatch = useDispatch();
+// const users = useSelector((state) => state.users.data);
+// // const token = useSelector((state) => state.auth.token);
+// // const navigate = useNavigate()
+// const onSubmit = (e) => {
+//   e.preventDefault();
+//   const form = new FormData(e.target);
+//   const email = form.get('email');
+//   const password = form.get('password');
+//   const found = users.find(user => user.mail === email)
+//   if(!found){
+//     window.alert('wrong')
+//     return
+//   };
+//   if(found.password !== password){
+//     window.alert('wrong')
+//     return
+//   };
+//   dispatch(loginAction('abc'));
+//   dispatch(setProfile(found));
+// };
 
-useEffect(() => {
-  if(token !== '') {
-    navigate('/profile')
-  }
-}, [token])
+// useEffect(() => {
+//   if(token !== '') {
+//     navigate('/profile')
+//   }
+// }, [token]);
 
   return (
     <div className="bg-bg-marvel bg-no-repeat bg-cover h-screen bg-center flex items-center justify-center">
@@ -49,7 +49,7 @@ useEffect(() => {
           <img className="w-32 md:w-40" src={Logo} alt="Tickitz Logo" />
         </div>
         <div className="bg-white shadow-lg rounded-lg p-6 md:p-8">
-          <form onSubmit={onSubmit}  className="flex flex-col gap-6">
+          <form  className="flex flex-col gap-6">
             <div className='text-2xl md:text-3xl font-bold'>Welcome Back👋</div>
             <div className='text-base md:text-lg text-gray-500'>Sign in with your data that you entered during your registration</div>
             
