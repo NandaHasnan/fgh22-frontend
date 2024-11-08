@@ -5,12 +5,41 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const loginFormScema = yup.object({
+  email: yup
+    .string()
+    .email('email in valid')
+    .min(8, 'email harus 8 karakter')
+    .required('email is requared'),
+  password: yup
+    .string()
+    .min(8, 'password harus 8 karakter')
+    .required('password is requared')
+    .matches(
+      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+    ),
+  'agree-tos': yup.string().required().is(['true'], 'anda belum centang'),
+});
 
 function App() {
   useState();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginFormScema),
+  });
+  const onSubmit = (value) => console.log(value);
   return (
     <div className="bg-bg-marvel bg-cover h-screen bg-center flex items-center justify-center px-4 sm:px-8">
       <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
@@ -34,35 +63,46 @@ function App() {
               <div className="text-xs sm:text-sm text-[#A0A3BD]">Done</div>
             </div>
           </div>
-          <form className="flex flex-col gap-4 sm:gap-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 sm:gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="text-gray-600">Email</label>
               <input
                 className="py-2 sm:py-3 px-3 sm:px-4 rounded-md border border-abu focus:outline-none focus:ring-2 focus:ring-blue-600"
                 type="email"
                 id="email"
-                name="email"
+                {...register('email')}
                 placeholder="Enter your email"
               />
+              <div>
+                {errors.email?.message && <span>{errors.email?.message}</span>}
+              </div>
             </div>
             <div className="flex flex-col gap-2">
               <label htmlFor="password" className="text-gray-600">Password</label>
               <div className="relative w-full">
-                <button className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+                <button className="absolute py-5 right-4 flex items-center pointer-events-none">
                   <IoEyeOutline className="text-[#A0A3BD]" />
                 </button>
                 <input
                   className="px-4 py-2 sm:py-3 w-full h-12 sm:h-14 border border-[#DEDEDE] rounded-lg focus:outline-none"
                   type="password"
                   id="password"
-                  name="password"
+                  {...register('password', { required: true })}
                   placeholder="Write your password"
                 />
+                <div>
+                  {errors.password?.message && <span>{errors.password?.message}</span>}
+                </div>
               </div>
             </div>
             <div className="flex items-center">
-              <input type="checkbox" id="terms" className="mr-2" />
+              <input type="checkbox" id="terms" className="mr-2" {...register('agree-tos')}/>
               <label htmlFor="terms" className="text-xs sm:text-sm text-gray-600">I agree to terms & conditions</label>
+              <div>
+                {errors['agree-tos']?.message && (
+                  <span>{errors['agree-tos']?.message}</span>
+                )}
+              </div>
             </div>
             <div>
               <button className="w-full py-3 sm:py-4 rounded-md bg-oren hover:bg-orenMuda text-center text-white font-semibold">

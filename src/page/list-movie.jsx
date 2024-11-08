@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { GoArrowRight } from "react-icons/go";
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
-import MovieCard from '../components/movie-card'
+import MovieCard2 from '../components/movie-card2'
 
 function App() {
    useState(0)
@@ -43,22 +43,22 @@ function App() {
 
         <section className='flex flex-col gap-10'>
             <div className='overflow-x-auto flex gap-10 justify-between'>
-              <MovieCard title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
-              <MovieCard title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
-              <MovieCard title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
-              <MovieCard title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
+              <MovieCard2 title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
+              <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
+              <MovieCard2 title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
+              <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
             </div>
             <div className='overflow-x-auto flex gap-10 justify-between'>
-              <MovieCard title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
-              <MovieCard title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
-              <MovieCard title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
-              <MovieCard title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
+              <MovieCard2 title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
+              <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
+              <MovieCard2 title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
+              <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
             </div>
             <div className='overflow-x-auto flex gap-10 justify-between'>
-              <MovieCard title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
-              <MovieCard title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
-              <MovieCard title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
-              <MovieCard title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
+              <MovieCard2 title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
+              <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
+              <MovieCard2 title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
+              <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
             </div>
             <div className='flex gap-5 justify-center text-center text-white'>
               <div className='flex w-10 h-10 bg-orenMuda rounded-full justify-center items-center'>1</div>

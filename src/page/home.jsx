@@ -16,7 +16,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
-import MovieCard from '../components/movie-card'
+import MovieCard2 from '../components/movie-card2'
 import Subscribe from '../components/subcribe'
 
 
@@ -75,10 +75,10 @@ function App() {
           </div>
 
           <div className=' overflow-x-auto justify-between flex gap-10 px-4'>
-            <MovieCard title='Tebusan Dosa' genre1='Horror' genre2='Advanture'/>
-            <MovieCard title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
-            <MovieCard title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
-            <MovieCard title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
+            <MovieCard2 genre1='Horror' genre2='Advanture'/>
+            <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
+            <MovieCard2 title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
+            <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
           </div>
 
           <Link to="/movie" className='flex gap-4 items-center justify-center text-oren text-center py-14 font-semibold'>
@@ -97,10 +97,10 @@ function App() {
             </div>
           </div>
             <div className='overflow-x-auto flex gap-10 justify-between'>
-            <MovieCard title='Tebusan Dosa' genre1='Horror' genre2='Advanture' date='December 2024'/>
-            <MovieCard title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture' date='January 2025'/>
-            <MovieCard title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture' date='Februari 2025'/>
-            <MovieCard title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture' date='Maret 2025'/>
+            <MovieCard2 title='Tebusan Dosa' genre1='Horror' genre2='Advanture' date='December 2024'/>
+            <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture' date='January 2025'/>
+            <MovieCard2 title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture' date='Februari 2025'/>
+            <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture' date='Maret 2025'/>
             </div>
         </section>
         <Subscribe/>        
