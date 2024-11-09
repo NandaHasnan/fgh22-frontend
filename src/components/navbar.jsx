@@ -3,12 +3,29 @@ import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Logo from '../assets/logo.png';
 
+import { useDispatch, useSelector } from 'react-redux';
+// import { Link } from 'react-router-dom';
+import { logoutUser } from '../redux/reducers/profile';
+import { useNavigate } from 'react-router-dom';
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen); 
   };
+
+  const loggedInUser = useSelector((state) => state.profile.loggedInUser);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logoutUser()); // Mengirim action logout
+    navigate('/login'); // Setelah logout, arahkan kembali ke halaman login
+  };
+
+  if (!loggedInUser) {
+    navigate('/login'); // Jika tidak ada pengguna yang login, arahkan ke halaman login
+  }
 
   return (
     <nav className="px-4 md:px-12 lg:px-48 items-center shadow-md py-3 flex justify-between bg-white">
@@ -26,6 +43,9 @@ function Navbar() {
         </Link>
         <Link to="/register" className="rounded-lg py-2 px-4 bg-oren text-white hover:bg-orenMuda">
           SignUp
+        </Link>
+        <Link to="/register" onClick={handleLogout} className="rounded-lg py-2 px-4 bg-oren text-white hover:bg-orenMuda">
+        Logout
         </Link>
       </div>
       <div className="md:hidden">

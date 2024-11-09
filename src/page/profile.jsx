@@ -1,41 +1,58 @@
 import { useState } from 'react'
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
 import Navbar from '../components/navbar-profile';
 import InfoProfile from '../components/info-profile';
 import AccountProfile from '../components/account-profile';
 import AccountMobile from '../components/account-mobile';
-import { useDispatch, useSelector } from 'react-redux';
-import { editUser } from './redux/reducers/users';
-import { setProfile } from './redux/reducers/profile';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { editUser } from './redux/reducers/users';
+// import { setProfile } from './redux/reducers/profile';
+import {  useSelector } from 'react-redux';
+// import { Link } from 'react-router-dom';
+// import { logoutUser } from '../redux/reducers/profile';
+// import { useNavigate } from 'react-router-dom';
 
 function App() {
    useState(0)
    useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const navigate = useNavigate
-  const user = useSelector(state => state.profile.data)
-  const token = useSelector(state => state.auth.token)
-  const dispatch = useDispatch()
+  // const navigate = useNavigate
+  // const user = useSelector(state => state.profile.data)
+  // const token = useSelector(state => state.auth.token)
+  // const dispatch = useDispatch()
 
-  const onSubmit = (e) =>{
-    e.preventDefault()
-    const form = new FormData(e.target)
-    const email = form.get('email')
-    const updateData = {
-      email,
-    }
-    dispatch(editUser(updateData))
-    dispatch(setProfile(updateData))
-  }
+  // const onSubmit = (e) =>{
+  //   e.preventDefault()
+  //   const form = new FormData(e.target)
+  //   const email = form.get('email')
+  //   const updateData = {
+  //     email,
+  //   }
+  //   dispatch(editUser(updateData))
+  //   dispatch(setProfile(updateData))
+  // }
    
-  useEffect(() => {
-    if(token === '') {
-      navigate('/login')
-    }
-  }, )
+  // useEffect(() => {
+  //   if(token === '') {
+  //     navigate('/login')
+  //   }
+  // }, )
+
+  const { email, password } = useSelector((state) => state.profile);
+  // const loggedInUser = useSelector((state) => state.profile.loggedInUser);
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const handleLogout = () => {
+  //   dispatch(logoutUser()); // Mengirim action logout
+  //   navigate('/login'); // Setelah logout, arahkan kembali ke halaman login
+  // };
+
+  // if (!loggedInUser) {
+  //   navigate('/login'); // Jika tidak ada pengguna yang login, arahkan ke halaman login
+  // }
 
   return (
     <div className='flex-wrap'>
@@ -50,7 +67,7 @@ function App() {
                 <div className='hidden md:flex flex-col gap-12'>
                   <AccountProfile status='active' content='Account Profile' status2='not' content2='Order History'/>
                   <div className='py-10 px-12 w-[950px] h-[418px] rounded-lg bg-white'>
-                    <form onSubmit={onSubmit} className='flex flex-col gap-12'>
+                    <form className='flex flex-col gap-12'>
                       <div className='flex flex-col gap-4'>
                         <div className='text-base text-[#14142B]'>Details Information</div>
                         <div className='px-6 w-[825px] h-[1px] bg-[#DEDEDE]'></div>
@@ -66,7 +83,7 @@ function App() {
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="email">E-mail</label>
-                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder='jonasrodrigu123@gmail.com' defaultValue={user.email}/>
+                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder='jonasrodrigu123@gmail.com' defaultValue={email}/>
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="number">Phone Number</label>
@@ -88,7 +105,7 @@ function App() {
                             <span className="absolute inset-y-0 right-12 flex items-center pointer-events-none">
                               <IoEyeOutline className="text-[#A0A3BD]" />
                             </span>
-                            <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg focus:outline-none' type="text" id='con-pass' name='con-pass' placeholder='Write your password' />
+                            <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg focus:outline-none' type="text" id='con-pass' name='con-pass' placeholder='Write your password' defaultValue={password}/>
                           </div>
                         </div>
                         <div className='flex flex-col gap-3'>

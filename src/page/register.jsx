@@ -1,33 +1,38 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Logo from '../assets/gambar/logo2.png';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
+import { registerUser } from '../redux/reducers/profile';
 
-const loginFormScema = yup.object({
+// Validasi form register
+const loginFormSchema = yup.object({
   email: yup
     .string()
-    .email('email in valid')
-    .min(8, 'email harus 8 karakter')
-    .required('email is requared'),
+    .email('Email tidak valid')
+    .min(8, 'Email minimal 8 karakter')
+    .required('Email harus diisi'),
   password: yup
     .string()
-    .min(8, 'password harus 8 karakter')
-    .required('password is requared')
+    .min(8, 'Password minimal 8 karakter')
+    .required('Password harus diisi')
     .matches(
-      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      "Password harus memiliki setidaknya 8 karakter, satu huruf besar, dan satu karakter spesial"
     ),
-  'agree-tos': yup.string().required().is(['true'], 'anda belum centang'),
+  'agree-tos': yup.boolean().oneOf([true], 'Anda harus menyetujui syarat dan ketentuan'),
 });
 
-function App() {
-  useState();
+function Register() {
+  useState()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -37,9 +42,19 @@ function App() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(loginFormScema),
+    resolver: yupResolver(loginFormSchema),
   });
-  const onSubmit = (value) => console.log(value);
+
+  const onSubmit = (data) => {
+    // Kirim data register ke Redux
+    dispatch(registerUser({ 
+      name: data.name || 'User',  // jika nama tidak tersedia
+      email: data.email,
+      password: data.password 
+    }));
+    navigate('/login'); // arahkan ke halaman login
+  };
+
   return (
     <div className="bg-bg-marvel bg-cover h-screen bg-center flex items-center justify-center px-4 sm:px-8">
       <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
@@ -73,9 +88,7 @@ function App() {
                 {...register('email')}
                 placeholder="Enter your email"
               />
-              <div>
-                {errors.email?.message && <span>{errors.email?.message}</span>}
-              </div>
+              {errors.email && <span>{errors.email.message}</span>}
             </div>
             <div className="flex flex-col gap-2">
               <label htmlFor="password" className="text-gray-600">Password</label>
@@ -87,28 +100,20 @@ function App() {
                   className="px-4 py-2 sm:py-3 w-full h-12 sm:h-14 border border-[#DEDEDE] rounded-lg focus:outline-none"
                   type="password"
                   id="password"
-                  {...register('password', { required: true })}
+                  {...register('password')}
                   placeholder="Write your password"
                 />
-                <div>
-                  {errors.password?.message && <span>{errors.password?.message}</span>}
-                </div>
+                {errors.password && <span>{errors.password.message}</span>}
               </div>
             </div>
             <div className="flex items-center">
-              <input type="checkbox" id="terms" className="mr-2" {...register('agree-tos')}/>
+              <input type="checkbox" id="terms" className="mr-2" {...register('agree-tos')} />
               <label htmlFor="terms" className="text-xs sm:text-sm text-gray-600">I agree to terms & conditions</label>
-              <div>
-                {errors['agree-tos']?.message && (
-                  <span>{errors['agree-tos']?.message}</span>
-                )}
-              </div>
+              {errors['agree-tos'] && <span>{errors['agree-tos'].message}</span>}
             </div>
-            <div>
-              <button className="w-full py-3 sm:py-4 rounded-md bg-oren hover:bg-orenMuda text-center text-white font-semibold">
-                Join For Free Now
-              </button>
-            </div>
+            <button type="submit" className="w-full py-3 sm:py-4 rounded-md bg-oren hover:bg-orenMuda text-center text-white font-semibold">
+              Join For Free Now
+            </button>
             <div className="text-center text-xs sm:text-sm text-gray-600 mt-4 sm:mt-6">
               Already have an account? <Link to="/login" className="text-blue-600 hover:underline">Log in</Link>
             </div>
@@ -138,4 +143,4 @@ function App() {
   );
 }
 
-export default App;
+export default Register;
