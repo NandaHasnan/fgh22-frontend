@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { registerUser } from '../redux/reducers/profile';
 
-// Validasi form register
+
 const loginFormSchema = yup.object({
   email: yup
     .string()
@@ -46,12 +46,12 @@ function Register() {
   });
 
   const onSubmit = (data) => {
-    // Kirim data register ke Redux
+   
     dispatch(registerUser({ 
       email: data.email,
       password: data.password 
     }));
-    navigate('/login'); // arahkan ke halaman login
+    navigate('/login'); 
   };
 
   return (

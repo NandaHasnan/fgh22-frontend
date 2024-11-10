@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // Gunakan localStorage
+import storage from 'redux-persist/lib/storage'; 
 import profileReducer from './reducers';
-// import { PersistGate } from 'redux-persist/integration/react';
+
 
 
 const persistConfig = {
@@ -16,6 +16,7 @@ const store = configureStore({
   reducer: {
     profile: persistedReducer,
   },
+  
 });
 
 const persistor = persistStore(store);
@@ -23,27 +24,9 @@ const persistor = persistStore(store);
 export { store, persistor };
 
 
-// import { configureStore} from '@reduxjs/toolkit';
-// import storage from 'redux-persist/lib/storage';
-// import { persistReducer, persistStore } from 'redux-persist';
-// import rootReducer from './reducers'; // Ganti dengan reducer Anda
+// import { configureStore } from '@reduxjs/toolkit';
+// import reducer from './reducers';
 
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// };
-
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// const store = configureStore({
-//   reducer: persistedReducer,
-//   middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware({
-//       serializableCheck: {
-//         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
-//       },
-//     }),
+// export const store = configureStore({
+//   reducer,
 // });
-
-// export const persistor = persistStore(store);
-// export default store;

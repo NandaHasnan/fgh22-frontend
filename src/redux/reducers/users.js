@@ -1,28 +1,29 @@
-// import {createSlice} from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
 
-// const initialState = {
-//     data: [],
-// };
+const initialState = {};
 
-// const users = createSlice({
-//     name: 'users',
-//     initialState,
-//     reducers: {
-//         addUsers: (state, action) => {
-//             state.data = [...state.data, action.payload];
-//         },
-//         editUser: (state, action) => {
-//             const email = action.payload.email
-//             const foundIndex = state.data.foundIndex(users => users.email === email)
-//             if(foundIndex !== -1){
-//                 state.data[foundIndex].email = action.payload.email
-//                 if(action.payload.password !== ''){
-//                     state.data[foundIndex].password = action.payload.password
-//                 }
-//             }
-//         }
-//     },
-// });
+const profile = createSlice({
+    name: 'profile',
+    initialState,
+    reducers: {
+        loginUser: (state, action) => {
+            const { email, password } = action.payload;
+            const foundUser = state.users.find(
+              (user) => user.email === email && user.password === password
+            );
+            if (foundUser) {
+              state.loggedInUser = foundUser; // Menyimpan pengguna yang sedang login
+            } else {
+              state.loggedInUser = null; // Jika tidak ditemukan pengguna dengan email dan password tersebut
+            }
+          },
+          // Menangani logout pengguna
+          logoutUser: () => {
+            return initialState
+          },
+    }
 
-// export const {addUsers, editUser} = users.actions
-// export default users.reducer
+})
+
+export const { loginUser, logoutUser } = profile.actions;
+export default profile.reducer;

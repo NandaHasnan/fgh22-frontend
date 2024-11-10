@@ -5,11 +5,12 @@ import Logo from '../assets/logo.png';
 
 import { useDispatch, useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
-import { logoutUser } from '../redux/reducers/profile';
+import { logoutUser } from '../redux/reducers/users';
 import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen); 
@@ -44,9 +45,9 @@ function Navbar() {
         <Link to="/register" className="rounded-lg py-2 px-4 bg-oren text-white hover:bg-orenMuda">
           SignUp
         </Link>
-        <Link to="/register" onClick={handleLogout} className="rounded-lg py-2 px-4 bg-oren text-white hover:bg-orenMuda">
+        <button onClick={handleLogout} className="rounded-lg py-2 px-4 bg-oren text-white hover:bg-orenMuda">
         Logout
-        </Link>
+        </button>
       </div>
       <div className="md:hidden">
         <button onClick={toggleMenu}>
