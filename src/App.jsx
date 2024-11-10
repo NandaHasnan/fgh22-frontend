@@ -16,8 +16,8 @@ import Admmovie from './page/adm-movie';
 import Addmovie from './page/add-movie';
 
 import { Provider } from 'react-redux';
-import { store, persistor } from './redux/store';
-import { PersistGate } from 'redux-persist/integration/react';
+import { store} from './redux/store';
+// import { PersistGate } from 'redux-persist/integration/react';
 // import Contac from './page/contac';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
@@ -92,9 +92,9 @@ function App() {
   // return <><RouterProvider router={router} /></>
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      
       <RouterProvider router={router} />;
-      </PersistGate>
+      
     </Provider>
   );
     

@@ -48,7 +48,6 @@ function Register() {
   const onSubmit = (data) => {
     // Kirim data register ke Redux
     dispatch(registerUser({ 
-      name: data.name || 'User',  // jika nama tidak tersedia
       email: data.email,
       password: data.password 
     }));

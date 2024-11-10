@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Logo from '../assets/gambar/logo2.png';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
@@ -8,23 +8,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/reducers/profile';
 
 function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {users} = useSelector((state) => state.profile);
+
+  // Ambil status pengguna yang sedang login dari Redux
+  const loggedInUser = useSelector((state) => state.profile.loggedInUser);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const user = users.find((user) => user.email === email && user.password === password);
-    if (user) {
-      dispatch(loginUser(user)); // Mengupdate state Redux dengan user yang login
-      navigate('/home'); // Redirect ke halaman home
-    } else {
-      alert('Email atau password salah');
-    }
+    dispatch(loginUser({ email, password }));
+    navigate('/home');
   };
+
+  useEffect(() => {
+    // Jika `loggedInUser` berhasil diupdate, lakukan navigasi ke halaman home
+    if (loggedInUser) {
+      navigate('/home');
+    }
+  }, [loggedInUser, navigate]);
 
   return (
     <div className="bg-bg-marvel bg-no-repeat bg-cover h-screen bg-center flex items-center justify-center">
@@ -43,10 +47,9 @@ function Login() {
                 className="py-2 md:py-3 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
                 type="email"
                 id="email"
-                name="email"
-                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -63,10 +66,9 @@ function Login() {
                   className="py-2 md:py-3 px-4 w-full rounded-lg border border-gray-300 focus:outline-none"
                   type={showPassword ? "text" : "password"}
                   id="password"
-                  name="password"
-                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
                 />
               </div>
             </div>
