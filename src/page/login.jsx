@@ -5,8 +5,7 @@ import { FaFacebook } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../redux/reducers/users';
-// import { login as loginAction } from '../redux/reducers/auth';
+import { login } from '../redux/reducers/auth';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -20,80 +19,38 @@ const loginFormSchema = yup.object({
   password: yup
     .string()
     .min(8, 'Password minimal 8 karakter')
-    .required('Password harus diisi')
-    .matches(
-      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      "Password harus memiliki setidaknya 8 karakter, satu huruf besar, dan satu karakter spesial"
-    ),
-    
+    .required('Password harus diisi'),
 });
 
 function Login() {
-  // const [showError, setShowError] = useState(false);
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({
-  //   resolver: yupResolver(loginFormSchema),
-  // });
-
   const [showPassword, setShowPassword] = useState(false);
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  
-  // const loggedInUser = useSelector((state) => state.profile.loggedInUser);
-
-  // const onSubmit = (value) => {
-  //   const found = loggedInUser.find((e) => e.email === value.email);
-  //   if (value.email !== found.email) {
-  //     window.alert('yes email');
-  //     return;
-      
-  //   }
-  //   if (value.password !== found.password) {
-  //     window.alert('yes pass');
-  //     return;
-  //   }
-  //   // setShowError(false);
-  //   navigate('/home');
-  //   dispatch(loginUser());
-  // };
-  
-  // useEffect(() => {
-  //   console.log('isLoggedIn status:', loggedInUser);
-  //   if (loggedInUser) {
-  //     navigate('/home');
-  //   }
-  // }, [loggedInUser]);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector((state) => state.profile.loginUser);
-  // const token = useSelector((state) => state.auth.token);
+  const token = useSelector((state) => state.auth.token); 
+  const regis = useSelector((state) => state.profile.users); 
+  const { register, handleSubmit, formState: { errors }, } = useForm({ resolver: yupResolver(loginFormSchema), });
 
-  // Gunakan useForm dengan resolver Yup
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(loginFormSchema),
-  });
-
-  const onSubmit = (data) => {
-    dispatch(loginUser(data));
-    navigate('/home');
+  const onSubmit = (value) => {
+    const found = regis.find((user) =>user.email === value.email)
+      if(!found){
+        window.alert('anda belum register')
+        navigate('/register')
+        return
+      }
+      if(value.password !== found.password){
+        window.alert('password invalid')
+        return
+      }
+      dispatch(login('abc'))
+    
   };
 
   useEffect(() => {
-    // console.log('isLoggedIn status:', isLoggedIn);
-    if (isLoggedIn) {
-      return
+    if (token !== '') {
+      navigate('/');
     }
-  }, [isLoggedIn]);
+  }, [token, navigate]);
+
   return (
     <div className="bg-bg-marvel bg-no-repeat bg-cover h-screen bg-center flex items-center justify-center">
       <div className="w-full max-w-md mx-4 md:mx-auto">
@@ -111,9 +68,7 @@ function Login() {
                 className="py-2 md:py-3 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
                 type="email"
                 id="email"
-                {...register('email')}
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
+                {...register('email', {required:true})}
                 placeholder="Enter your email"
               />
               {errors.email && <span>{errors.email.message}</span>}
@@ -132,9 +87,7 @@ function Login() {
                   className="py-2 md:py-3 px-4 w-full rounded-lg border border-gray-300 focus:outline-none"
                   type={showPassword ? "text" : "password"}
                   id="password"
-                  {...register('password')}
-                  // value={password}
-                  // onChange={(e) => setPassword(e.target.value)}
+                  {...register('password', {required:true})}
                   placeholder="Enter your password"
                 />
                 {errors.password && <span>{errors.password.message}</span>}

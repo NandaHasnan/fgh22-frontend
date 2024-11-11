@@ -5,7 +5,7 @@ import Logo from '../assets/logo.png';
 
 import { useDispatch, useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
-import { logoutUser } from '../redux/reducers/users';
+import { logout } from '../redux/reducers/auth';
 import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
@@ -20,13 +20,13 @@ function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
-    dispatch(logoutUser()); // Mengirim action logout
+    dispatch(logout()); // Mengirim action logout
     navigate('/login'); // Setelah logout, arahkan kembali ke halaman login
   };
 
-  if (!loggedInUser) {
-    navigate('/login'); // Jika tidak ada pengguna yang login, arahkan ke halaman login
-  }
+  // if (!loggedInUser) {
+  //   navigate('/login'); // Jika tidak ada pengguna yang login, arahkan ke halaman login
+  // }
 
   return (
     <nav className="px-4 md:px-12 lg:px-48 items-center shadow-md py-3 flex justify-between bg-white">
