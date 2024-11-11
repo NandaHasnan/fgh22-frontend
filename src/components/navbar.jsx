@@ -7,16 +7,20 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import { logout } from '../redux/reducers/auth';
 import { useNavigate } from 'react-router-dom';
+import Profile from '../assets/gambar/P-profile.png'
+import { IoIosArrowDown } from "react-icons/io";
+import { IoSearch } from "react-icons/io5";
+
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  // const [isLogin, setIsLogin] = useState(false);
+  const token = useSelector((state)=>state.auth.token)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen); 
   };
 
-  const loggedInUser = useSelector((state) => state.profile.loggedInUser);
+  // const loggedInUser = useSelector((state) => state.profile.loggedInUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -29,6 +33,7 @@ function Navbar() {
   // }
 
   return (
+    
     <nav className="px-4 md:px-12 lg:px-48 items-center shadow-md py-3 flex justify-between bg-white">
       <div>
         <img src={Logo} alt="Logo" />
@@ -38,6 +43,18 @@ function Navbar() {
         <Link to='/movie' className="hover:text-oren cursor-pointer">Movie</Link>
         <Link to='/order' className="hover:text-oren cursor-pointer">Buy Ticket</Link>
       </ul>
+      {token ?(
+      <div className='hidden md:flex items-center gap-3'>
+        
+          <button onClick={handleLogout} className="rounded-lg py-2 px-4 bg-oren text-white hover:bg-orenMuda">
+          Logout
+          </button>
+          <div>Location</div>
+          <div><IoIosArrowDown /></div>
+          <div><IoSearch /></div>
+          <div><img className='w-14 h14' src={Profile} alt="" /></div>
+      </div>
+        ):(
       <div className="hidden md:flex gap-5">
         <Link to="/login" className="rounded-lg py-2 px-4 border border-orenMuda text-oren hover:bg-orenMuda hover:text-white">
           Login
@@ -45,10 +62,9 @@ function Navbar() {
         <Link to="/register" className="rounded-lg py-2 px-4 bg-oren text-white hover:bg-orenMuda">
           SignUp
         </Link>
-        <button onClick={handleLogout} className="rounded-lg py-2 px-4 bg-oren text-white hover:bg-orenMuda">
-        Logout
-        </button>
+        
       </div>
+        )}
       <div className="md:hidden">
         <button onClick={toggleMenu}>
           {/* {isOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />} */}
@@ -72,7 +88,9 @@ function Navbar() {
           </div>
         </div>
       )}
+
     </nav>
+    
   );
 }
 

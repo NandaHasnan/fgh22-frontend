@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import Logo from '../assets/gambar/logo2.png';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
@@ -9,6 +9,8 @@ import { login } from '../redux/reducers/auth';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { registerUser } from '../redux/reducers/profile';
+// import { setProfile } from '../redux/reducers/users';
 
 const loginFormSchema = yup.object({
   email: yup
@@ -18,20 +20,25 @@ const loginFormSchema = yup.object({
     .required('Email harus diisi'),
   password: yup
     .string()
-    .min(8, 'Password minimal 8 karakter')
-    .required('Password harus diisi'),
+    // .min(8, 'Password minimal 8 karakter')
+    .required('Password harus diisi')
+    .matches(
+      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      "Password harus memiliki setidaknya 8 karakter, satu huruf besar, dan satu karakter spesial"
+    ),
 });
 
 function Login() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.auth.token); 
   const regis = useSelector((state) => state.profile.users); 
+  const token = useSelector((state) => state.auth); 
+  // const user = useSelector((state) => state.users.data); 
   const { register, handleSubmit, formState: { errors }, } = useForm({ resolver: yupResolver(loginFormSchema), });
 
   const onSubmit = (value) => {
-    const found = regis.find((user) =>user.email === value.email)
+    const found = regis.find(user => user.email === value.email)
       if(!found){
         window.alert('anda belum register')
         navigate('/register')
@@ -42,14 +49,17 @@ function Login() {
         return
       }
       dispatch(login('abc'))
+      dispatch(registerUser(value))
+      // dispatch(setProfile(value))
+      // navigate('/');
     
   };
-
-  useEffect(() => {
-    if (token !== '') {
-      navigate('/');
+console.log(token?.token)
+  React.useEffect(() => {
+    if (token?.token !== "") {
+      navigate('/home');
     }
-  }, [token, navigate]);
+  }, [token]);
 
   return (
     <div className="bg-bg-marvel bg-no-repeat bg-cover h-screen bg-center flex items-center justify-center">

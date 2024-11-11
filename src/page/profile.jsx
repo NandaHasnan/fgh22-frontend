@@ -9,7 +9,7 @@ import AccountMobile from '../components/account-mobile';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { editUser } from './redux/reducers/users';
 // import { setProfile } from './redux/reducers/profile';
-import {  useSelector } from 'react-redux';
+// import {  useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
 // import { logoutUser } from '../redux/reducers/profile';
 // import { useNavigate } from 'react-router-dom';
@@ -41,7 +41,7 @@ function App() {
   //   }
   // }, )
 
-  const { email, password } = useSelector((state) => state.profile);
+  // const user = useSelector(state => state.users.data);
   // const loggedInUser = useSelector((state) => state.profile.loggedInUser);
   // const dispatch = useDispatch();
   // const navigate = useNavigate();
@@ -83,7 +83,7 @@ function App() {
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="email">E-mail</label>
-                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder='jonasrodrigu123@gmail.com' defaultValue={email}/>
+                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder='jonasrodrigu123@gmail.com' />
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="number">Phone Number</label>
@@ -105,7 +105,7 @@ function App() {
                             <span className="absolute inset-y-0 right-12 flex items-center pointer-events-none">
                               <IoEyeOutline className="text-[#A0A3BD]" />
                             </span>
-                            <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg focus:outline-none' type="text" id='con-pass' name='con-pass' placeholder='Write your password' defaultValue={password}/>
+                            <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg focus:outline-none' type="text" id='con-pass' name='con-pass' placeholder='Write your password' />
                           </div>
                         </div>
                         <div className='flex flex-col gap-3'>
