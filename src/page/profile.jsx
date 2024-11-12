@@ -1,24 +1,26 @@
-import { useState } from 'react'
-import { useEffect } from 'react';
-import { Link} from 'react-router-dom';
+import React from 'react'
+// import { useEffect } from 'react';
+// import { Link} from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
-import Navbar from '../components/navbar-profile';
+import Navbar from '../components/navbar';
 import InfoProfile from '../components/info-profile';
 import AccountProfile from '../components/account-profile';
 import AccountMobile from '../components/account-mobile';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { editUser } from './redux/reducers/users';
 // import { setProfile } from './redux/reducers/profile';
-// import {  useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
+import { editUser } from '../redux/reducers/profile';
+import { useNavigate } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 // import { logoutUser } from '../redux/reducers/profile';
 // import { useNavigate } from 'react-router-dom';
 
 function App() {
-   useState(0)
-   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  //  useState(0)
+  //  useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
   // const navigate = useNavigate
   // const user = useSelector(state => state.profile.data)
   // const token = useSelector(state => state.auth.token)
@@ -41,7 +43,29 @@ function App() {
   //   }
   // }, )
 
-  // const user = useSelector(state => state.users.data);
+  const user = useSelector(state => state.users.data);
+  const token = useSelector((state) => state.auth); 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const form = new FormData(e.target)
+    // const firstName = form.get('f-name')
+    const email = form.get('email')
+    const password = form.get('password')
+    dispatch(editUser({
+      // firstName,
+      email,
+      password,
+    }))
+  }
+
+  React.useEffect(() => {
+    if (token?.token === "") {
+      navigate('/login');
+    }
+  }, [token]);
   // const loggedInUser = useSelector((state) => state.profile.loggedInUser);
   // const dispatch = useDispatch();
   // const navigate = useNavigate();
@@ -67,7 +91,7 @@ function App() {
                 <div className='hidden md:flex flex-col gap-12'>
                   <AccountProfile status='active' content='Account Profile' status2='not' content2='Order History'/>
                   <div className='py-10 px-12 w-[950px] h-[418px] rounded-lg bg-white'>
-                    <form className='flex flex-col gap-12'>
+                    <form onSubmit={onSubmit} className='flex flex-col gap-12'>
                       <div className='flex flex-col gap-4'>
                         <div className='text-base text-[#14142B]'>Details Information</div>
                         <div className='px-6 w-[825px] h-[1px] bg-[#DEDEDE]'></div>
@@ -83,7 +107,7 @@ function App() {
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="email">E-mail</label>
-                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder='jonasrodrigu123@gmail.com' />
+                          <input className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder='jonasrodrigu123@gmail.com' defaultValue={user.email}/>
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="number">Phone Number</label>
@@ -120,7 +144,7 @@ function App() {
                       </div>   
                     </div>
                   </div>
-                  <Link className='py-3 w-80 h-14 bg-oren text-center text-white rounded-2xl'>Update changes</Link>         
+                  <button type='submit' className='py-3 w-80 h-14 bg-oren text-center text-white rounded-2xl'>Update changes</button>         
                 </div>
           </div>
         </section>

@@ -24,36 +24,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  users: [], // Daftar pengguna yang terdaftar
-  // loggedInUser: null, // Pengguna yang sedang login
+  users: [], 
+  // loggedInUser: null, 
 };
 
 const profile = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    // Menambahkan pengguna baru ke dalam daftar
+    
     registerUser: (state, action) => {
       state.users = [...state.users, action.payload];
     },
-    // Menangani login pengguna
-    // loginUser: (state, action) => {
-    //   const { email, password } = action.payload;
-    //   const foundUser = state.users.find(
-    //     (user) => user.email === email && user.password === password
-    //   );
-    //   if (foundUser) {
-    //     state.loggedInUser = foundUser; // Menyimpan pengguna yang sedang login
-    //   } else {
-    //     state.loggedInUser = null; // Jika tidak ditemukan pengguna dengan email dan password tersebut
-    //   }
-    // },
-    // // Menangani logout pengguna
-    // logoutUser: (state) => {
-    //   state.loggedInUser = null; // Menghapus status login
-    // },
+    editUser: (state, action) => {
+      const email = action.payload.email;
+      const foundIndex = state.users.findIndex((user) => user.email === email);
+      if (foundIndex !== -1) {
+        // state.users[foundIndex].firstName = action.payload.firstName;
+        state.users[foundIndex].email = action.payload.email;
+        if (action.payload.password !== ''){
+          state.users[foundIndex].password = action.payload.password;
+        }
+      }
+    }
   },
 });
 
-export const { registerUser } = profile.actions;
+export const { registerUser, editUser } = profile.actions;
 export default profile.reducer;

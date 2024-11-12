@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useEffect } from 'react';
 import InfoProfile from '../components/info-profile'
-import Navbar from '../components/navbar-profile'
+import Navbar from '../components/navbar'
 import HistoryOrder from '../components/history-order';
 import TicketActive from '../components/ticket-active';
 import TicketPaid from '../components/ticket-paid';

@@ -10,7 +10,7 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerUser } from '../redux/reducers/profile';
-// import { setProfile } from '../redux/reducers/users';
+import { setProfile } from '../redux/reducers/users';
 
 const loginFormSchema = yup.object({
   email: yup
@@ -50,7 +50,7 @@ function Login() {
       }
       dispatch(login('abc'))
       dispatch(registerUser(value))
-      // dispatch(setProfile(value))
+      dispatch(setProfile(found))
       // navigate('/');
     
   };

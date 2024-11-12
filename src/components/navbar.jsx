@@ -52,7 +52,7 @@ function Navbar() {
           <div>Location</div>
           <div><IoIosArrowDown /></div>
           <div><IoSearch /></div>
-          <div><img className='w-14 h14' src={Profile} alt="" /></div>
+          <Link to='/profil'><img className='w-14 h14' src={Profile} alt="" /></Link>
       </div>
         ):(
       <div className="hidden md:flex gap-5">
