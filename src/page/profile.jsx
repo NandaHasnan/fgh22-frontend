@@ -21,27 +21,6 @@ function App() {
   //  useEffect(() => {
   //   window.scrollTo(0, 0);
   // }, []);
-  // const navigate = useNavigate
-  // const user = useSelector(state => state.profile.data)
-  // const token = useSelector(state => state.auth.token)
-  // const dispatch = useDispatch()
-
-  // const onSubmit = (e) =>{
-  //   e.preventDefault()
-  //   const form = new FormData(e.target)
-  //   const email = form.get('email')
-  //   const updateData = {
-  //     email,
-  //   }
-  //   dispatch(editUser(updateData))
-  //   dispatch(setProfile(updateData))
-  // }
-   
-  // useEffect(() => {
-  //   if(token === '') {
-  //     navigate('/login')
-  //   }
-  // }, )
 
   const user = useSelector(state => state.users.data);
   const token = useSelector((state) => state.auth); 
@@ -50,13 +29,18 @@ function App() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    const form = new FormData(e.target)
-    // const firstName = form.get('f-name')
-    const email = form.get('email')
-    const password = form.get('password')
+    const form = new FormData(e.target);
+    const firstName = form.get('f-name');
+    const lastName = form.get('l-name');
+    const email = form.get('email');
+    const phoneNumber = form.get('number');
+    const password = form.get('password');
+    
     dispatch(editUser({
-      // firstName,
+      firstName,
+      lastName,
       email,
+      phoneNumber,
       password,
     }))
   }
@@ -65,18 +49,8 @@ function App() {
     if (token?.token === "") {
       navigate('/login');
     }
+    
   }, [token]);
-  // const loggedInUser = useSelector((state) => state.profile.loggedInUser);
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  // const handleLogout = () => {
-  //   dispatch(logoutUser()); // Mengirim action logout
-  //   navigate('/login'); // Setelah logout, arahkan kembali ke halaman login
-  // };
-
-  // if (!loggedInUser) {
-  //   navigate('/login'); // Jika tidak ada pengguna yang login, arahkan ke halaman login
-  // }
 
   return (
     <div className='flex-wrap'>
@@ -119,7 +93,7 @@ function App() {
                   <div className='py-10 pb-16 px-12 w-[950px] rounded-lg bg-white'>
                     <div className='flex flex-col gap-12'>
                       <div className='flex flex-col gap-4'>
-                        <div className='text-base text-[#14142B]'>Details Information</div>
+                        <div className='text-base text-[#14142B]'>Account and Privacy</div>
                         <div className='px-6 w-[825px] h-[1px] bg-[#DEDEDE]'></div>
                       </div>
                       <div className='grid grid-cols-2 gap-8 justify-between'>
