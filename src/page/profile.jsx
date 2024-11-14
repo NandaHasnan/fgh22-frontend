@@ -12,6 +12,7 @@ import AccountMobile from '../components/account-mobile';
 import {  useDispatch, useSelector } from 'react-redux';
 import { editUser } from '../redux/reducers/profile';
 import { useNavigate } from 'react-router-dom';
+// import { setProfile } from '../redux/reducers/users';
 // import { Link } from 'react-router-dom';
 // import { logoutUser } from '../redux/reducers/profile';
 // import { useNavigate } from 'react-router-dom';
@@ -36,20 +37,13 @@ function App() {
     const phoneNumber = form.get('number');
     const password = form.get('password');
     
-    dispatch(editUser({
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      password,
-    }))
+    dispatch(editUser({ firstName, lastName, email, phoneNumber, password, }))
   }
 
   React.useEffect(() => {
     if (token?.token === "") {
       navigate('/login');
     }
-    
   }, [token]);
 
   return (
