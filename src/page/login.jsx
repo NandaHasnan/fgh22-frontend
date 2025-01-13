@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../assets/gambar/logo2.png';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../redux/reducers/auth';
+import * as authAction  from '../redux/reducers/auth';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { registerUser } from '../redux/reducers/profile';
-import { setProfile } from '../redux/reducers/users';
+// import { registerUser } from '../redux/reducers/profile';
+// import { setProfile } from '../redux/reducers/users';
+// import { login } from '../redux/reducers/auth';
 
 const loginFormSchema = yup.object({
   email: yup
@@ -32,34 +33,56 @@ function Login() {
   const [showPassword, setShowPassword] = React.useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const regis = useSelector((state) => state.profile.users); 
+  // const regis = useSelector((state) => state.profile.users); 
   const token = useSelector((state) => state.auth); 
   // const user = useSelector((state) => state.users.data); 
   const { register, handleSubmit, formState: { errors }, } = useForm({ resolver: yupResolver(loginFormSchema), });
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const onSubmit = async (value) => {
+    const query = new URLSearchParams(value)
+    const queryString = query.toString()
+    const res = await (await fetch("http://localhost:8888/auth/login", {
+      method: "POST",
+      body: queryString,
+      headers:{
+        'Content-Type' : 'application/x-www-form-urlencoded'
+      }
+      // ,mode: 'no-cors' 
+    })).json();
+    
+    if (res.success === true) {
+      dispatch(authAction.login(res.result));
+    } else {
+      setIsOpen(!isOpen, res.message)
+      // window.alert(res.message);
+    }
+    
+    
 
-  const onSubmit = (value) => {
-    const found = regis.find(user => user.email === value.email)
-      if(!found){
-        window.alert('anda belum register')
-        navigate('/register')
-        return
-      }
-      if(value.password !== found.password){
-        window.alert('password invalid')
-        return
-      }
-      dispatch(login('abc'))
-      dispatch(registerUser(value))
-      dispatch(setProfile(found))
+    // const found = regis.find(user => user.email === value.email)
+    //   if(!found){
+    //     window.alert('anda belum register')
+    //     navigate('/register')
+    //     return
+    //   }
+    //   if(value.password !== found.password){
+    //     window.alert('password invalid')
+    //     return
+    //   }
+
+    //   dispatch(login())
+    //   dispatch(registerUser(value))
+    //   dispatch(setProfile(found))
       // navigate('/');
     
   };
-console.log(token?.token)
+// console.log(token?.token)
   React.useEffect(() => {
     if (token?.token !== "") {
       navigate('/home');
     }
-  }, [token]);
+  }, [token, navigate]);
 
   return (
     <div className="bg-bg-marvel bg-no-repeat bg-cover h-screen bg-center flex items-center justify-center">
@@ -73,6 +96,9 @@ console.log(token?.token)
             <div className='text-base md:text-lg text-gray-500'>Sign in with your data that you entered during your registration</div>
             
             <div className="flex flex-col gap-2">
+            {isOpen && (
+                <div className='py-3.5 w-full h-14 rounded-md bg-red text-center font-semibold text-white'>Invalid Email or Password</div>
+            )}
               <label htmlFor="email" className="text-gray-600">Email</label>
               <input 
                 className="py-2 md:py-3 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"

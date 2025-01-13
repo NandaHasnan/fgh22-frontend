@@ -4,6 +4,11 @@ import { FaArrowDown, FaArrowRight } from "react-icons/fa6";
 
 function Seat() {
     useState(0)
+    // const [message, setMessage] = useState('');
+
+    // const handleClick = () => {
+    //     setMessage('A1')
+    // }
 
   return (
     <div className='flex flex-col gap-9'>
@@ -12,6 +17,7 @@ function Seat() {
                         <div className='flex flex-col gap-3 justify-center items-center'>
                             <div className='md:hidden w-[295px] h-1.5 rounded-full bg-biru'></div>
                             <div className='flex justify-center'>
+
                                 <div className='flex flex-col gap-2'>
                                     <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>A</button>
                                     <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>B</button>

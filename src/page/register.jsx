@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '../assets/gambar/logo2.png';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
@@ -6,9 +6,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
-import { registerUser } from '../redux/reducers/profile';
+// import { registerUser } from '../redux/reducers/profile';
 
 
 const loginFormSchema = yup.object({
@@ -30,8 +30,9 @@ const loginFormSchema = yup.object({
 
 function Register() {
   useState()
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = React.useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,17 +41,26 @@ function Register() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, 
   } = useForm({
     resolver: yupResolver(loginFormSchema),
   });
 
   const onSubmit = (data) => {
    
-    dispatch(registerUser({ 
-      email: data.email,
-      password: data.password 
-    }));
+    const query = new URLSearchParams(data)
+    const queryString = query.toString()
+    fetch("http://localhost:8888/auth/register", {
+      method: "POST",
+      body: queryString,
+      headers:{
+        'Content-Type' : 'application/x-www-form-urlencoded'
+      }
+    })
+    // dispatch(registerUser({ 
+    //   email: data.email,
+    //   password: data.password 
+    // }));
     navigate('/login'); 
   };
 
@@ -92,7 +102,10 @@ function Register() {
             <div className="flex flex-col gap-2">
               <label htmlFor="password" className="text-gray-600">Password</label>
               <div className="relative w-full">
-                <button className="absolute py-5 right-4 flex items-center pointer-events-none">
+                <button 
+                type="button" 
+                onClick={() => setShowPassword(!showPassword)} 
+                className="absolute py-5 right-4 flex items-center pointer-events-none">
                   <IoEyeOutline className="text-[#A0A3BD]" />
                 </button>
                 <input

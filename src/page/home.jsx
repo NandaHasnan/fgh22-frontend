@@ -21,9 +21,30 @@ import Subscribe from '../components/subcribe'
 
 
 function App() {
-   useState(0)
+  const [characters, setCharacters] = useState([]);
+   
    useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:8888/movies') 
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data && data.result) {
+          setCharacters(data.result);
+        } else {
+          console.error('Invalid data structure:', data);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching movies:', error);
+      });
   }, []);
   return (
     <div className=''>
@@ -75,10 +96,10 @@ function App() {
           </div>
 
           <div className=' overflow-x-auto justify-between flex gap-10 px-4'>
-            <MovieCard2 genre1='Horror' genre2='Advanture'/>
-            <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
+            <MovieCard2  characters={characters} layout={"flex"}/>
+            {/* <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
             <MovieCard2 title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
-            <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/>
+            <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/> */}
           </div>
 
           <Link to="/movie" className='flex gap-4 items-center justify-center text-oren text-center py-14 font-semibold'>
@@ -97,10 +118,10 @@ function App() {
             </div>
           </div>
             <div className='overflow-x-auto flex gap-10 justify-between'>
-            <MovieCard2 title='Tebusan Dosa' genre1='Horror' genre2='Advanture' date='December 2024'/>
-            <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture' date='January 2025'/>
+            <MovieCard2 characters={characters} layout={"flex"}/>
+            {/* <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture' date='January 2025'/>
             <MovieCard2 title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture' date='Februari 2025'/>
-            <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture' date='Maret 2025'/>
+            <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture' date='Maret 2025'/> */}
             </div>
         </section>
         <Subscribe/>        

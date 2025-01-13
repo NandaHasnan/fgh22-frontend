@@ -1,13 +1,36 @@
-import { useState } from "react";
-import Profile from '../assets/gambar/P-profile.png'
+import React, { useState } from 'react';
+// import Profile from '../assets/gambar/P-profile.png'
 import { SlOptions } from "react-icons/sl";
 import { FaStar } from "react-icons/fa6";
 // import { Link } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
+import * as profile from "../redux/reducers/profile"
+import { useDispatch, useSelector  } from 'react-redux';
+
 
 
 function InfoProfile() {
     const [isShow, setShow] = useState(false);
+    const dispatch = useDispatch()
+    const token = useSelector(state => state.auth)
+    const userProfile = useSelector(state => state.profile.users)
+
+
+    async function getProfil(token) {
+      const data = await (await fetch("http://localhost:8888/profile", {
+        // mode: 'no-cors',
+        headers: {
+          "Authorization" : `Bearer ${token.token}`
+        }
+      })).json()
+        dispatch(profile.setProfile(data.result))
+    }
+    
+    React.useEffect(() => {
+      if (token?.token !== "") {
+        getProfil(token)
+      }
+    }, [token])
   
     return (
         <div className='flex flex-col gap-8 w-80 md:h-[783px] px-10 pt-10 pb-24 rounded-lg bg-white'>
@@ -16,12 +39,12 @@ function InfoProfile() {
                 <div className="hidden md:block"><SlOptions /></div>
             </div>
             <div className='flex flex-col gap-8'>
-                <div className='px-9'>
-                    <img className='' src={Profile} alt="" />
+                <div className='px-14'>
+                    <img className='w-32 h-32 rounded-full bg-gray-200' src={`http://localhost:8888/users/image/${userProfile.image}`} alt={userProfile.image} />
                 </div>
                 <div className='flex flex-col gap-1'>
-                    <div className='text-center text-xl font-semibold text-[#14142B]'>Jonas El Rodriguez</div>
-                    <div className='text-center text-sm text-[#4E4B66]'>Moviegoers</div>
+                    <div className='text-center text-xl font-semibold text-[#14142B]'>{userProfile.firstname}</div>
+                    <div className='text-center text-sm text-[#4E4B66]'>{userProfile.lastname}</div>
                 </div>
             </div>
             <div className='w-60 h-[1px] bg-[#DEDEDE]'></div>
@@ -49,15 +72,15 @@ function InfoProfile() {
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="f-name">First Name</label>
-                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='f-name' name='f-name' placeholder='Jonas'/>
+                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='f-name' name='f-name' placeholder={userProfile.firstname}/>
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="email">E-mail</label>
-                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder='jonasrodrigu123@gmail.com'/>
+                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder={userProfile.email}/>
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="number">Phone Number</label>
-                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='number' name='number' placeholder='81445687121'/>
+                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='number' name='number' placeholder={userProfile.phone_number}/>
                         </div>
                       </div>   
                   </div>
