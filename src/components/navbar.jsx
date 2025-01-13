@@ -7,13 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import  * as logout from '../redux/reducers/auth';
 // import { useNavigate } from 'react-router-dom';
-// import Profile from '../assets/gambar/P-profile.png'
+import Profile from '../assets/gambar/prof.png'
 import { IoIosArrowDown } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 import * as profile from "../redux/reducers/profile"
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen2, setIsOpen2] = useState(false);
   const auth = useSelector(state => state.auth)
   const userProfile = useSelector(state => state.profile.users)
   const dispatch = useDispatch()
@@ -77,6 +78,7 @@ function Navbar() {
           <div><IoIosArrowDown /></div>
           <div><IoSearch /></div>
           <Link to='/profil'><img className='w-14 h14 rounded-full' src={`http://localhost:8888/users/image/${userProfile.image}`} alt="" /></Link>
+          <Link to='/profil'><img className='w-14 h14 rounded-full' src={Profile} alt="" /></Link>
           <div>{userProfile.firstname}</div>
       </div>}
       { auth.token === "" && <div className="hidden md:flex gap-5">
