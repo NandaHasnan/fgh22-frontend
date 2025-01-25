@@ -41,6 +41,7 @@ function App() {
     navigate('/order');
   };
   
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -109,7 +110,7 @@ function App() {
       <Navbar />
       
 
-        <section className='bg-cover py-24 px-6 md:px-12 lg:px-48 h-[462px] bg-cover-detail'>
+        <section className={`bg-cover py-24 px-6 md:px-12 lg:px-48 h-[462px] bg-cover-detail`}>
         <div className=''>
           <img className='pt-24 md:pt-56 w-96 md:w-[264px]' src={`http://localhost:8888/movies/image/${movie.image_movie}`} alt='' />
         </div>
@@ -241,19 +242,19 @@ function App() {
                    )}
                 </div>
               </div>
-              <div className="flex flex-wrap gap-5 justify-between">
+            </div>
+              <div className="flex gap-5 justify-between">
                 {cinema.map((cin, index) => (
                   <div key={index} className="w-full md:w-[264px]">
-                    <div className="md:hover:bg-orenMuda justify-between w-full md:w-[264px] md:h-[157px] border-2 border-abuMuda3 rounded-md px-8 py-3 md:py-11 md:px-16">
-                      <img src={cin.image} alt={cin.name} />
-                      <button onClick={() => handleBookNow(cin)} className="md:w-[264px] md:h-[157px] cursor-pointer text-center">{cin.cinema_name}</button>
+                    {/* <div className="md:hover:bg-orenMuda w-full md:w-[264px] md:h-[157px] border-2 border-abuMuda3 rounded-md px-8 py-3 md:py-11 md:px-16"> */}
+                      {/* <img src={cin.image} alt={cin.name}/> */}
+                      <button onClick={() => handleBookNow(cin)} className="md:hover:bg-orenMuda w-full md:w-[264px] md:h-[157px] cursor-pointer text-center border-2 border-abuMuda3 rounded-md px-8 py-3 md:py-11 md:px-16">{cin.cinema_name}</button>
                       
-                    </div>
+                    {/* </div> */}
                     {/* <button onClick={() => handleBookNow(cin)} className='bg-oren py-4 px-20 rounded-md text-white'>Book Now</button> */}
                   </div>
                 ))}
               </div>
-            </div>
             <div className='flex gap-5 justify-center text-center text-white'>
               <div className='flex w-10 h-10 bg-orenMuda rounded-md justify-center items-center'>1</div>
               <div className='flex w-10 h-10 border-2 border-abuMuda3 rounded-md justify-center items-center text-text1'>2</div>

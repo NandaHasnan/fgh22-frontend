@@ -4,33 +4,33 @@ import { SlOptions } from "react-icons/sl";
 import { FaStar } from "react-icons/fa6";
 // import { Link } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
-import * as profile from "../redux/reducers/profile"
-import { useDispatch, useSelector  } from 'react-redux';
+import { useParams } from 'react-router-dom';
+// import * as profile from "../redux/reducers/profile"
+import { useSelector  } from 'react-redux';
 
 
 
 function InfoProfile() {
     const [isShow, setShow] = useState(false);
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const token = useSelector(state => state.auth)
-    const userProfile = useSelector(state => state.profile.users)
+    // const userProfile = useSelector(state => state.profile.users)
+    const params = useParams()
+    const [profile, setProfile] = useState();
 
-
-    async function getProfil(token) {
-      const data = await (await fetch("http://localhost:8888/profile", {
-        // mode: 'no-cors',
-        headers: {
-          "Authorization" : `Bearer ${token.token}`
-        }
-      })).json()
-        dispatch(profile.setProfile(data.result))
-    }
-    
     React.useEffect(() => {
-      if (token?.token !== "") {
-        getProfil(token)
-      }
-    }, [token])
+        fetch(`http://localhost:8888/users/detail/${params.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            setProfile(data.result);
+          });
+      }, [params, token]);
   
     return (
         <div className='flex flex-col gap-8 w-80 md:h-[783px] px-10 pt-10 pb-24 rounded-lg bg-white'>
@@ -40,11 +40,11 @@ function InfoProfile() {
             </div>
             <div className='flex flex-col gap-8'>
                 <div className='px-14'>
-                    <img className='w-32 h-32 rounded-full bg-gray-200' onChange={userProfile.image} src={`http://localhost:8888/users/image/${userProfile.image}`} alt={userProfile.image} />
+                    <img className='w-32 h-32 rounded-full bg-gray-200' src={`http://localhost:8888/users/image/${profile?.image}`} alt={profile?.image} />
                 </div>
                 <div className='flex flex-col gap-1'>
-                    <div className='text-center text-xl font-semibold text-[#14142B]'>{userProfile.firstname}</div>
-                    <div className='text-center text-sm text-[#4E4B66]'>{userProfile.lastname}</div>
+                    <div className='text-center text-xl font-semibold text-[#14142B]'>{profile?.firstname}</div>
+                    <div className='text-center text-sm text-[#4E4B66]'>{profile?.lastname}</div>
                 </div>
             </div>
             <div className='w-60 h-[1px] bg-[#DEDEDE]'></div>
@@ -72,15 +72,15 @@ function InfoProfile() {
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="f-name">First Name</label>
-                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='f-name' name='f-name' placeholder={userProfile.firstname}/>
+                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='f-name' name='f-name' placeholder={profile?.firstname}/>
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="email">E-mail</label>
-                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder={userProfile.email}/>
+                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='email' name='email' placeholder={profile?.email}/>
                         </div>
                         <div className='flex flex-col gap-3'>
                           <label className='text-base text-[#4E4B66]' htmlFor="number">Phone Number</label>
-                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='number' name='number' placeholder={userProfile.phone_number}/>
+                          <input className='px-6 w-full h-14 border border-[#DEDEDE] rounded-lg' type="text" id='number' name='number' placeholder={profile?.phone_number}/>
                         </div>
                       </div>   
                   </div>

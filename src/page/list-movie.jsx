@@ -67,7 +67,7 @@ function App() {
       <main className='px-48 flex flex-col gap-10'>
         <section className='py-16'>
             <div className='flex gap-5'>
-                <form className="flex flex-col gap-2" onSubmit={formSearch.handleSubmit(fetchInfo)}>
+                <form className="flex flex-col gap-4" onSubmit={formSearch.handleSubmit(fetchInfo)}>
                     <label htmlFor="event" className="text-gray-600">Cari Event</label>
                     <input className="py-3 px-4 rounded-md border border-abu focus:outline-none " placeholder='Search' type="text" {...formSearch.register('search')} />
                     {/* <button>submit</button> */}
@@ -75,11 +75,11 @@ function App() {
                 <div className='flex flex-col gap-5'>
                     <label htmlFor="filter">Filter</label>
                     <div>
-                        <span className='px-6 py-2.5 bg-oren text-white rounded-md'>Thriller</span>
-                        <span className='px-6 py-2.5'>Horror</span>
-                        <span className='px-6 py-2.5'>Romantic</span>
-                        <span className='px-6 py-2.5'>Adventure</span>
-                        <span className='px-6 py-2.5'>Sci-fi</span>
+                        <button className='cursor-pointer px-6 py-2.5 bg-oren text-white rounded-md'>Thriller</button>
+                        <button className='cursor-pointer px-6 py-2.5'>Horror</button>
+                        <button className='cursor-pointer px-6 py-2.5'>Romantic</button>
+                        <button className='cursor-pointer px-6 py-2.5'>Adventure</button>
+                        <button className='cursor-pointer px-6 py-2.5'>Sci-fi</button>
                     </div>
                 </div>
             </div>

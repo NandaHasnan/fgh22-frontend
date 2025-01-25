@@ -28,6 +28,13 @@ function App() {
       }
     }
 
+    const formatRupiah = (number) => {
+      return number.toLocaleString("id-ID", {
+        style: "currency",
+        currency: "IDR",
+      });
+    };
+
     const onSubmit = () => {
       const selectedSeat = seat.join(', ')
       const totalPrice = seat.length * 20000
@@ -312,7 +319,7 @@ function App() {
                 <div className='w-full h-1 bg-[#E6E6E6]'></div>
                 <div className='px-5 flex justify-between'>
                   <div className='text-lg font-semibold'>Total Payment</div>
-                  <div className='text-2xl text-[#1D4ED8] font-semibold' value='price' id='price' {...register('price')}>Rp{seat.length * 20000}</div>
+                  <div className='text-2xl text-[#1D4ED8] font-semibold' value='price' id='price' {...register('price')}>{formatRupiah(seat.length * 20000)}</div>
                 </div>
               </div>
               <button className='py-3.5 w-full lg:w-[358px] h-14 bg-oren rounded-md text-white text-center' onClick={handleSubmit(onSubmit)}>Checkout now</button>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Logo from '../assets/logo.png';
-
 import { useDispatch, useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import  * as logout from '../redux/reducers/auth';
@@ -10,14 +9,15 @@ import  * as logout from '../redux/reducers/auth';
 import Profile from '../assets/gambar/prof.png'
 import { IoIosArrowDown } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
-import * as profile from "../redux/reducers/profile"
+// import * as profile from "../redux/reducers/profile"
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   // const [isOpen2, setIsOpen2] = useState(false);
   const auth = useSelector(state => state.auth)
-  const userProfile = useSelector(state => state.profile.users)
+  // const userProfile = useSelector(state => state.profile.users)
   const dispatch = useDispatch()
+  const [profile, setProfile] = useState();
   // const navigate = useNavigate()
 
   // async function getProfil(token) {
@@ -28,20 +28,53 @@ function Navbar() {
   //   })).json()
   //     dispatch(profile.setProfile(data.result))
   // }
-  React.useEffect(() => {
-    if (auth?.token !== "") {
-      async function getProfil(token) {
-        const data = await (await fetch("http://localhost:8888/profile",{
-          headers: {
-            "Authorization" : `Bearer ${token.token}`
-          }
-        })).json()
-          dispatch(profile.setProfile(data.result))
-      }
-      getProfil(auth)
+  // React.useEffect(() => {
+  //   if (auth?.token !== "") {
+  //     async function getProfil(token) {
+  //       const data = await (await fetch("http://localhost:8888/profile",{
+  //         headers: {
+  //           "Authorization" : `Bearer ${token.token}`
+  //         }
+  //       })).json()
+  //         setProfile({
+  //           id: data.result.id,
+  //           firstname: data.result.firstname,
+  //           lastname: data.result.lasstname,
+  //           email: data.result.email,
+  //           image: data.result.image,
+  //         })
+  //     }
+  //     getProfil(auth)
 
+  //   }
+  // }, [auth])
+
+  async function getProfile(token) {
+    const data = await (
+      await fetch("http://localhost:8888/profile", {
+        headers: {
+          Authorization: `Bearer ${token.token}`,
+        },
+      })
+    ).json();
+    console.log(data.data);
+    setProfile({
+      id: data.result.id,
+      firstname: data.result.firstname,
+      lastname: data.result.lasstname,
+      email: data.result.email,
+      image: data.result.image,
+    });
+  }
+
+  React.useEffect(() => {
+    if (auth === "") {
+      setProfile({});
     }
-  }, [auth, dispatch])
+    if (auth !== "") {
+      getProfile(auth);
+    }
+  }, [auth]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen); 
@@ -77,9 +110,17 @@ function Navbar() {
           <div>Location</div>
           <div><IoIosArrowDown /></div>
           <div><IoSearch /></div>
-          <Link to='/profil'><img className='w-14 h14 rounded-full' src={`http://localhost:8888/users/image/${userProfile.image}`} alt="" /></Link>
-          <Link to='/profil'><img className='w-14 h14 rounded-full' src={Profile} alt="" /></Link>
-          <div>{userProfile.firstname}</div>
+          <Link to='/profil'>
+            <img
+              className='w-14 h-14 rounded-full'
+              src={profile?.image ? `http://localhost:8888/users/image/${profile.image}` : Profile}
+              alt="Profile"
+            />
+          </Link>
+
+          {/* <Link to='/profil'><img className='w-14 h14 rounded-full bg-black' src={`http://localhost:8888/users/image/${userProfile.image}`} alt="" /></Link>
+          <Link to='/profil'><img className='w-14 h14 rounded-full' src={Profile} alt="" /></Link> */}
+          <div>{profile?.firstname === "" ? profile?.email : profile?.firstname}</div>
       </div>}
       { auth.token === "" && <div className="hidden md:flex gap-5">
         <Link to="/login" className="rounded-lg py-2 px-4 border border-orenMuda text-oren hover:bg-orenMuda hover:text-white">

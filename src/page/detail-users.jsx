@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoEyeOutline } from "react-icons/io5";
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/navbar';
-import InfoProfile from '../components/info-profile';
-import AccountProfile from '../components/account-profile';
+import { useNavigate, useParams } from 'react-router-dom';
+import NavbarAdmin from '../components/navbar-admin';
+// import InfoProfile from '../components/info-profileADM';
 import AccountMobile from '../components/account-mobile';
 import { editUser } from '../redux/reducers/profile';
 import * as yup from 'yup';
@@ -44,7 +43,9 @@ function App() {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [profil, setProfil] = useState([]);
+  // const [profil, setProfil] = useState([]);
+  const params = useParams()
+  const [profile, setProfile] = useState();
 
   const selectFile = (f) => {
     const selected = f.target.files[0];
@@ -71,7 +72,15 @@ function App() {
     setFile(selected);
   };
 
-  const { handleSubmit, register} = useForm();
+  const { handleSubmit, register } = useForm({
+    // defaultValues: {
+    //   firstname: userProfile.firstname,
+    //   lastname: userProfile.lastname,
+    //   email: userProfile.email,
+    //   phone_number: userProfile.phone_number,
+    //   password: '',
+    // },
+  });
 
   // React.useEffect(() => {
   //   if (userProfile) {
@@ -83,25 +92,25 @@ function App() {
   // }, [userProfile, setValue]);
 
   React.useEffect(() => {
-      fetch(`http://localhost:8888/profile`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    fetch(`http://localhost:8888/users/detail/${params.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        return response.json();
       })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          setProfil(data.result);
-        });
-    }, [token]);
+      .then((data) => {
+        setProfile(data.result);
+      });
+  }, [params, token]);
 
   // React.useEffect(() => {
   //     if (token?.token !== "") {
   //       async function getProfil(token) {
-  //         const data = await (await fetch("http://localhost:8888/profile",{
+  //         const data = await (await fetch(`http://localhost:8888/users/detail/${params.id}`,{
   //           headers: {
-  //             "Authorization" : `Bearer ${token.token}`
+  //             Authorization : `Bearer ${token.token}`
   //           }
   //         })).json()
   //           setProfil(data.result)
@@ -109,7 +118,7 @@ function App() {
   //       getProfil(token)
   
   //     }
-  //   }, [token, dispatch])
+  //   }, [token, params.id])
 
   const onSubmit = async (data) => {
     if (data.password !== confirmPassword) {
@@ -138,7 +147,7 @@ function App() {
     }
 
     try {
-      const response = await fetch("http://localhost:8888/users", {
+      const response = await fetch(`http://localhost:8888/users/edit/${params.id}`, {
         method: "PATCH",
         body: form,
         headers,
@@ -149,15 +158,14 @@ function App() {
         console.log("Response dari server:", result);
 
         dispatch(editUser(result));
-        // alert("Profile updated successfully!");
+        alert("Profile updated successfully!");
       } else {
-        // const error = await response.text();
-        // console.error("Error dari server:", error);
+        const error = await response.text();
+        console.error("Error dari server:", error);
         setIsOpen3(true);
         setTimeout(() => {
           setIsOpen3(false);
         }, 3000)
-        navigate('/profile');
         // alert("Failed to update profile!");
       }
     } catch (error) {
@@ -178,71 +186,31 @@ function App() {
 
   return (
     <div className='flex-wrap'>
-      <Navbar />
+      <NavbarAdmin/>
       <div className='md:hidden'>
         <AccountMobile status='active' content='Account Profile' status2='not' content2='Order History' />
       </div>
       <main>
         <section className='px-16 py-14 h-[1400px] bg-[#A0A3BD20]'>
           <div className='flex gap-8 justify-center'>
-            <InfoProfile />
+            {/* <InfoProfile /> */}
             <div className='hidden md:flex flex-col gap-12'>
               
       {isOpen3 && (
                         <div className='py-3.5 w-full h-14 rounded-md bg-red text-center font-semibold text-white'>Failed to update profile</div>
                       )}
                       {isOpen4 && (
-                        <div className='py-3.5 w-full h-14 rounded-md bg-green-600 text-center font-semibold text-white'>Profile update success, please refresh your page</div>
+                        <div className='py-3.5 w-full h-14 rounded-md bg-lime-600 text-center font-semibold text-white'>Profile update success</div>
                       )}
-              <AccountProfile status='active' content='Account Profile' status2='not' content2='Order History' />
+              {/* <AccountProfile status='active' content='Account Profile' status2='not' content2='Order History' /> */}
               <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-12'>
-                <div className='py-10 px-12 w-[950px] h-[418px] rounded-lg bg-white'>
+                <div className='flex flex-col gap-8 py-10 px-12 w-[950px] h-full rounded-lg bg-white'>
                   <div className='flex flex-col gap-4'>
                     <div className='text-base text-[#14142B]'>Details Information</div>
                     <div className='px-6 w-[825px] h-[1px] bg-[#DEDEDE]'></div>
                   </div>
-                  <div className='grid grid-cols-2 gap-8 justify-between'>
-                    <div className='flex flex-col gap-3'>
-                      <label className='text-base text-[#4E4B66]' htmlFor="firstname">First Name</label>
-                      <input
-                        className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg'
-                        type="text"
-                        id='firstname'
-                        {...register("firstname")}
-                        defaultValue={profil.firstname}
-                      />
-                    </div>
-                    <div className='flex flex-col gap-3'>
-                      <label className='text-base text-[#4E4B66]' htmlFor="lastname">Last Name</label>
-                      <input
-                        className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg'
-                        type="text"
-                        id='lastname'
-                        {...register("lastname")}
-                        defaultValue={profil.lastname}
-                      />
-                    </div>
-                    <div className='flex flex-col gap-3'>
-                      <label className='text-base text-[#4E4B66]' htmlFor="email">E-mail</label>
-                      <input
-                        className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg'
-                        type="email"
-                        id='email'
-                        {...register("email")}
-                        defaultValue={profil.email}
-                      />
-                      {errors.email && <span>{errors.email.message}</span>}
-                    </div>
-                    <div className='flex flex-col gap-3'>
-                      <label className='text-base text-[#4E4B66]' htmlFor="phone_number">Phone Number</label>
-                      <input
-                        className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg'
-                        type="text"
-                        id='phone_number'
-                        {...register("phone_number")}
-                        defaultValue={profil.phone_number}
-                      />
-                    </div>
+                  <div className='flex gap-5'>
+                    <img className='w-32 h-32 rounded-md bg-gray-200' onChange={profile?.image} src={`http://localhost:8888/users/image/${profile?.image}`} alt={profile?.image} />
                     <div className='flex flex-col gap-3'>
                       <div>
                         <label
@@ -265,8 +233,60 @@ function App() {
                       {isOpen2 && (
                         <div className='py-3.5 w-full h-14 rounded-md bg-red text-center font-semibold text-white'>File harus jpg dan png</div>
                       )}
-                      {/* <input className='file:w-96 w-[828px] file:h-14 file:bg-white border border-[#DEDEDE] file:border-none  file:text-lg file:cursor-pointer  rounded-lg ' type="file" id='image' onChange={selectFile} /> */}
+                      {/* <input className='file:w- w-full file:h-14 file:bg-white border border-[#DEDEDE] file:border-none  file:text-lg file:cursor-pointer  rounded-lg ' type="file" id='image' onChange={selectFile} /> */}
                     </div>
+                  </div>
+                  <div className='grid grid-cols-2 gap-8 justify-between'>
+                    <div className='flex flex-col gap-3'>
+                      <label className='text-base text-[#4E4B66]' htmlFor="firstname">First Name</label>
+                      <input
+                        className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg'
+                        type="text"
+                        id='firstname'
+                        {...register("firstname")}
+                        defaultValue={profile?.firstname}
+                      />
+                    </div>
+                    <div className='flex flex-col gap-3'>
+                      <label className='text-base text-[#4E4B66]' htmlFor="lastname">Last Name</label>
+                      <input
+                        className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg'
+                        type="text"
+                        id='lastname'
+                        {...register("lastname")}
+                        defaultValue={profile?.lastname}
+                      />
+                    </div>
+                    <div className='flex flex-col gap-3'>
+                      <label className='text-base text-[#4E4B66]' htmlFor="email">E-mail</label>
+                      <input
+                        className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg'
+                        type="email"
+                        id='email'
+                        {...register("email")}
+                        defaultValue={profile?.email}
+                      />
+                      {errors.email && <span>{errors.email.message}</span>}
+                    </div>
+                    <div className='flex flex-col gap-3'>
+                      <label className='text-base text-[#4E4B66]' htmlFor="phone_number">Phone Number</label>
+                      <input
+                        className='px-6 w-96 h-14 border border-[#DEDEDE] rounded-lg'
+                        type="text"
+                        id='phone_number'
+                        {...register("phone_number")}
+                        defaultValue={profile?.phone_number}
+                      />
+                    </div>
+                    {/* <div className='flex flex-col gap-3'>
+                      {isOpen && (
+                        <div className='py-3.5 w-full h-14 rounded-md bg-red text-center font-semibold text-white'>File max 2 mb</div>
+                      )}
+                      {isOpen2 && (
+                        <div className='py-3.5 w-full h-14 rounded-md bg-red text-center font-semibold text-white'>File harus jpg dan png</div>
+                      )}
+                      <input className='file:w-96 w-[828px] file:h-14 file:bg-white border border-[#DEDEDE] file:border-none  file:text-lg file:cursor-pointer  rounded-lg ' type="file" id='image' onChange={selectFile} />
+                    </div> */}
                   </div>
                 </div>
                 <div className='py-10 pb-16 px-12 w-[950px] rounded-lg bg-white'>

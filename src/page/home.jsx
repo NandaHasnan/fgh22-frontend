@@ -23,6 +23,7 @@ import Subscribe from '../components/subcribe'
 function App() {
   const [characters, setCharacters] = useState([]);
    
+  
    useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -95,8 +96,10 @@ function App() {
             <div className='text-3xl w-full sm:w-[545px] mx-auto'>Exciting Movies That Should Be Watched Today</div>
           </div>
 
-          <div className=' overflow-x-auto justify-between flex gap-10 px-4'>
-            <MovieCard2  characters={characters} layout={"flex"}/>
+          <div className=' overflow-x-auto flex-shrink-0 justify-between flex gap-10 px-4'>
+            
+            
+            <MovieCard2  characters={characters} layout={"flex flex-shrink-0"}/>
             {/* <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture'/>
             <MovieCard2 title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture'/>
             <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture'/> */}
@@ -118,7 +121,7 @@ function App() {
             </div>
           </div>
             <div className='overflow-x-auto flex gap-10 justify-between'>
-            <MovieCard2 characters={characters} layout={"flex"}/>
+            <MovieCard2 characters={characters} layout={" flex flex-shrink-0"}/>
             {/* <MovieCard2 title='Cinta Dalam Ikhlas' genre1='Family' genre2='Advanture' date='January 2025'/>
             <MovieCard2 title='Aku Jati, Aku Asperger' genre1='Family' genre2='Advanture' date='Februari 2025'/>
             <MovieCard2 title='Bila Esok Ibu Tiada' genre1='Family' genre2='Advanture' date='Maret 2025'/> */}

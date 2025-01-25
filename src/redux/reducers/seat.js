@@ -1,12 +1,16 @@
 // reducers/seat.js
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+  seatDetail: {
+    seat: '',
+    price: '',
+  }
+}
+
 const seatSlice = createSlice({
   name: 'seat',
-  initialState: {
-    seat: '',
-    price: 0,
-  },
+  initialState,
   reducers: {
     setSeat: (state, action) => {
       state.seat = action.payload.seat;

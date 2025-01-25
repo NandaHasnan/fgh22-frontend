@@ -7,9 +7,16 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { HiArrowLongRight } from "react-icons/hi2";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import { useSelector } from 'react-redux';
 
 function App() {
    useState(0);
+   const bookingDetails = useSelector((state) => state.booking.movieDetails)
+  //  const seatDetails = useSelector((state) => state.seat?.seatDetail)
+   const seatDetails = useSelector((state) => ({
+    seat: state.seat?.seat,
+    price: state.seat?.price,
+  }));
    useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -40,7 +47,7 @@ function App() {
                   <div className='flex flex-wrap justify-between px-6'>
                     <div>
                       <div className='text-xs text-[#AAAAAA]'>Movie</div>
-                      <div className='text-sm text-[#14142B] font-normal'>Spider-Man: ..</div>
+                      <div className='text-sm text-[#14142B] font-normal'>{bookingDetails.title}</div>
                     </div>
                     <div>
                       <div className='text-xs text-[#AAAAAA]'>Category</div>
@@ -50,11 +57,11 @@ function App() {
                   <div className='flex flex-wrap justify-between px-6'>
                     <div>
                       <div className='text-xs text-[#AAAAAA]'>Date</div>
-                      <div className='text-sm text-[#14142B] font-normal'>07 Jul</div>
+                      <div className='text-sm text-[#14142B] font-normal'>{bookingDetails.selectedDate}</div>
                     </div>
                     <div>
                       <div className='text-xs text-[#AAAAAA]'>Time</div>
-                      <div className='text-sm text-[#14142B] font-normal'>2:00pm</div>
+                      <div className='text-sm text-[#14142B] font-normal'>{bookingDetails.selectedTime}</div>
                     </div>
                   </div>
                   <div className='flex flex-wrap justify-between px-6'>
@@ -64,14 +71,14 @@ function App() {
                     </div>
                     <div>
                       <div className='text-xs text-[#AAAAAA]'>Seats</div>
-                      <div className='text-sm text-[#14142B] font-normal'>C4, C5, C6</div>
+                      <div className='text-sm text-[#14142B] font-normal'>{seatDetails.seat}</div>
                     </div>
                   </div>
                   <div className='px-6'>
                     <div className='rounded-md py-2.5 px-4 lg:px-6 w-full lg:w-60 h-12 border border-[#DEDEDE]'>
                       <div className='flex justify-between '>
                         <div>Total</div>
-                        <div>$30.00</div>
+                        <div>Rp{seatDetails.price}</div>
                       </div>
                     </div>
                   </div>

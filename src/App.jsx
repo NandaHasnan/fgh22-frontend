@@ -5,6 +5,8 @@ import Login from './page/login';
 import Register from './page/register';
 import Movie from './page/list-movie';
 import Detail from './page/detail';
+import Detailmovie from './page/detail-movie';
+import Detailusers from './page/detail-users';
 import Order from './page/order';
 import Payment from './page/payment';
 import PaymentModal from './page/payment-modal';
@@ -13,7 +15,10 @@ import Profile from './page/profile';
 import Odrhistori from './page/order-history';
 import Chart from './page/admin-chart';
 import Admmovie from './page/adm-movie';
+import Admusers from './page/adm-users';
 import Addmovie from './page/add-movie';
+import Adduser from './page/add-users';
+import Editmovie from './page/edit-movie';
 
 import { Provider } from 'react-redux';
 import { store} from './redux/store';
@@ -49,6 +54,18 @@ const router = createBrowserRouter([
     element: <Detail />,
   },
   {
+    path: '/movie/detail/:id',
+    element: <Detailmovie />,
+  },
+  {
+    path: '/users/detail/:id',
+    element: <Detailusers />,
+  },
+  {
+    path: '/movie/edit/:id',
+    element: <Editmovie />,
+  },
+  {
     path: '/order',
     element: <Order />,
   },
@@ -81,8 +98,16 @@ const router = createBrowserRouter([
     element: <Admmovie />,
   },
   {
+    path: '/adm-users',
+    element: <Admusers />,
+  },
+  {
     path: '/add-movie',
     element: <Addmovie />,
+  },
+  {
+    path: '/add-users',
+    element: <Adduser />,
   },
 ]);
 

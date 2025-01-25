@@ -13,13 +13,17 @@ import {  useSelector  } from 'react-redux';
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [info, setInfo] = useState({})
+//   const [info, setInfo] = useState({})
   const formSearch = useForm()
   const auth = useSelector(state => state.auth?.token)
 //   const params = useParams()
 
    useEffect(() => {
-    fetch('http://localhost:8888/movies') 
+    fetch('http://localhost:8888/users', {
+        headers: {
+          Authorization: `Bearer ${auth}`,
+        },
+      }) 
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -29,7 +33,7 @@ function App() {
       .then((data) => {
         if (data && data.result) {
           setCharacters(data.result)
-          setInfo(data.pageInfo)
+        //   setInfo(data.pageInfo)
         } else {
           console.error('Invalid data structure:', data);
         }
@@ -37,11 +41,11 @@ function App() {
       .catch((error) => {
         console.error('Error fetching movies:', error);
       });
-  }, []);
+  }, [auth]);
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8888/movies/delete/${id}`, {
+      const response = await fetch(`http://localhost:8888/users/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${auth}`,
@@ -49,19 +53,19 @@ function App() {
       });
   
       if (response.ok) {
-        alert("Movie deleted successfully!");
+        alert("users deleted successfully!");
         // Perbarui state characters untuk menghapus film yang dihapus
         setCharacters((prevCharacters) =>
-          prevCharacters.filter((movie) => movie.id !== id)
+          prevCharacters.filter((users) => users.id !== id)
         );
       } else {
         const error = await response.text();
         console.error("Server error:", error);
-        alert("Failed to delete movie.");
+        alert("Failed to delete users.");
       }
     } catch (error) {
-      console.error("Error deleting movie:", error);
-      alert("An error occurred while deleting the movie.");
+      console.error("Error deleting users:", error);
+      alert("An error occurred while deleting the users.");
     }
   };
   
@@ -110,18 +114,14 @@ function App() {
 
    const table = (value, index) => {
     return (
-        <tr key={`list-email-${value.id}-${index}`}>
+        <tr className='text-center text-sm text-[#1F4173]' key={`list-email-${value.id}-${index}`}>
             <td>{value.id}</td>
-            <td className='rounded-md px-7 md:px-0 pb-4 items-center justify-center w-[46px] h-[36px]'><img src={`http://localhost:8888/movies/image/${value.image_movie}`} alt="" /></td>
-            <td>{value.title}</td>
-            {value.genre.split(",").slice(0,1).map((val) => (
-            <td key="index">{val}</td>
-            ))}
-            <td>{value.release_date}</td>
-            <td>{value.duration}</td>
+            <td className='rounded-md px-7 md:px-0 pb-4 items-center justify-center w-[46px] h-[36px]'><img src={`http://localhost:8888/users/image/${value.image}`} alt="" /></td>
+            <td>{value.firstname} {value.lastname}</td>
+            <td>{value.phone_number}</td>
             <td className='px-7 md:px-0 pb-4 flex  gap-3 justify-center items-center'>
-                <Link to={`/movie/detail/${value.id}`} className='p-2 w-8 h-8 bg-oren rounded-md'><IoEye className="text-white" /></Link>
-                <Link to={`/movie/edit/${value.id}`} className='p-2 w-8 h-8 bg-oren rounded-md'><MdModeEdit className="text-white" /></Link>
+                <Link to={`/users/${value.id}`} className='p-2 w-8 h-8 bg-oren rounded-md'><IoEye className="text-white" /></Link>
+                <Link to={`/users/detail/${value.id}`} className='p-2 w-8 h-8 bg-oren rounded-md'><MdModeEdit className="text-white" /></Link>
                 <button onClick={() => handleDelete(value.id)} className='p-2 w-8 h-8 bg-oren rounded-md'><MdDelete className="text-white"/></button>
             </td>
         </tr>
@@ -151,7 +151,7 @@ function App() {
                 <div className='flex flex-col gap-9 md:w-[1105px] w-full bg-white px-8 py-12 rounded-md'>
                     <div className='md:flex md:flex-row flex flex-col gap-6 justify-between'>
                         <div className='flex justify-between items-center'>
-                            <div className='text-lg md:text-2xl text-[#14142B] font-semibold'>List Movie</div>
+                            <div className='text-lg md:text-2xl text-[#14142B] font-semibold'>List Users</div>
                             <Link to='/add-movie' className='md:hidden w-24 md:w-32 h-12 text-white font-semibold bg-oren rounded-md flex items-center justify-center gap-1.5'><IoMdAdd />Add</Link>
                         </div>
                         <div className="md:hidden flex flex-col gap-2">
@@ -172,7 +172,7 @@ function App() {
                                 </select> */}
                                 <input className="py-3.5 px-5 w-72 rounded-md bg-abuMuda2 focus:outline-none" placeholder='Search' type="text" {...formSearch.register('search')} />
                             </div>
-                            <Link to='/add-movie' className=' w-32 h-12 text-white font-semibold bg-oren rounded-md text-center pt-3'>Add Movies</Link>
+                            <Link to='/add-users' className=' w-32 h-12 text-white font-semibold bg-oren rounded-md text-center pt-3'>Add Users</Link>
                         </form>
                     </div>
                     {/* <Table/> */}
@@ -183,10 +183,8 @@ function App() {
                                 <tr className='text-center text-xs text-[#1F4173] font-semibold'>
                                     <td className='px-7 md:px-0 pb-7'>No</td>
                                     <td className='px-7 md:px-0 pb-7'>Thumbnail</td>
-                                    <td className='px-7 md:px-0 pb-7'>Movie Name</td>
-                                    <td className='px-7 md:px-0 pb-7'>Category</td>
-                                    <td className='px-7 md:px-0 pb-7'>Released Date</td>
-                                    <td className='px-7 md:px-0 pb-7'>Duration</td>
+                                    <td className='px-7 md:px-0 pb-7'>Full Name</td>
+                                    <td className='px-7 md:px-0 pb-7'>Phone Number</td>
                                     <td className='px-7 md:px-0 pb-7'>Action</td>
                                 </tr>
                             </thead>
@@ -262,13 +260,13 @@ function App() {
                     </div>
                     <div className='flex gap-5 justify-center text-center text-white'>
                     <div className='justify-between items-center flex'>
-                        <div className='text-black'>Page {info.currentpage}/{info.totalpage}</div>
-                                <div className='flex gap-5 justify-center text-center text-white'>
+                        {/* <div className='text-black'>Page {info.currentpage}/{info.totalpage}</div> */}
+                                {/* <div className='flex gap-5 justify-center text-center text-white'>
                                 {[...Array(info.totalpage)].map((_, index)=> (
                                     <button key={index} onClick={() => fetchInfo(formSearch.getValues("search"), index+1)} disabled={index+1 === info.currentpage} className='flex w-10 h-10  bg-abu rounded-md justify-center items-center disabled:bg-orenMuda disabled:cursor-pointer'>{index + 1}</button>
                                 ))}
                                 </div>
-                            <div className='text-black'>Total Data {info.totaldata}</div>
+                            <div className='text-black'>Total Data {info.totaldata}</div> */}
                         </div>
                     </div>
                 </div>

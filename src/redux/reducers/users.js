@@ -21,7 +21,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-// Fungsi untuk memuat data dari Local Storage
+
 const loadStateFromLocalStorage = () => {
   try {
     const serializedState = localStorage.getItem('user');
@@ -32,7 +32,7 @@ const loadStateFromLocalStorage = () => {
   }
 };
 
-// Fungsi untuk menyimpan data ke Local Storage
+
 const saveStateToLocalStorage = (state) => {
   try {
     const serializedState = JSON.stringify(state);
@@ -42,19 +42,19 @@ const saveStateToLocalStorage = (state) => {
   }
 };
 
-// State awal menggunakan data dari Local Storage
+
 const initialState = {
   data: loadStateFromLocalStorage(),
 };
 
-// Membuat slice Redux
+
 const users = createSlice({
   name: 'users',
   initialState,
   reducers: {
     setProfile: (state, action) => {
       state.data = action.payload;
-      saveStateToLocalStorage(state.data); // Menyimpan data ke Local Storage saat diperbarui
+      saveStateToLocalStorage(state.data); 
     },
   },
 });

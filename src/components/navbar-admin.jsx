@@ -19,6 +19,7 @@ function NavbarAdmin() {
         <ul className='hidden md:flex gap-14'>
           <Link to='/chart' className="hover:text-oren cursor-pointer">Dashboard</Link>
           <Link to='/adm-movie' className="hover:text-oren cursor-pointer">Movie</Link>
+          <Link to='/adm-users' className="hover:text-oren cursor-pointer">Users</Link>
         </ul>
         <div className='hidden md:flex items-center gap-3'>
             <div>Location</div>

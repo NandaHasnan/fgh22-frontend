@@ -1,8 +1,16 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function MovieCard2({characters, layout}) {
+  const [isLoading, setIsLoading] = useState(true);
+  // const ImageWithLoading = ({ imageUrl, altText }) => {
+    
+      const handleImageLoad = () => {
+        setIsLoading(false);
+      };
+  
+  //   }
   // const [id, setId] = useState([]);
 
   // useEffect(() => {
@@ -26,17 +34,56 @@ function MovieCard2({characters, layout}) {
   // }, []);
 
   
+  
+    
 
 
   return (
     <div className={`${layout} gap-5`}>
+      {isLoading && (
+        <div className='flex gap-5'>
+            <div className='flex flex-col items-center gap-3 animate-pulse'>
+              <div className='w-[264px] h-[405px] rounded-md bg-gray-400'></div>
+              <div className='w-[204px] h-3 rounded-full bg-gray-400'></div>
+              <div className='w-[150px] h-3 rounded-full bg-gray-400'></div>
+            </div>
+            <div className='flex flex-col items-center gap-3 animate-pulse'>
+              <div className='w-[264px] h-[405px] rounded-md bg-gray-400'></div>
+              <div className='w-[204px] h-3 rounded-full bg-gray-400'></div>
+              <div className='w-[150px] h-3 rounded-full bg-gray-400'></div>
+            </div>
+            <div className='flex flex-col items-center gap-3 animate-pulse'>
+              <div className='w-[264px] h-[405px] rounded-md bg-gray-400'></div>
+              <div className='w-[204px] h-3 rounded-full bg-gray-400'></div>
+              <div className='w-[150px] h-3 rounded-full bg-gray-400'></div>
+            </div>
+            <div className='flex flex-col items-center gap-3 animate-pulse'>
+              <div className='w-[264px] h-[405px] rounded-md bg-gray-400'></div>
+              <div className='w-[204px] h-3 rounded-full bg-gray-400'></div>
+              <div className='w-[150px] h-3 rounded-full bg-gray-400'></div>
+            </div>
+            <div className='flex flex-col items-center gap-3 animate-pulse'>
+              <div className='w-[264px] h-[405px] rounded-md bg-gray-400'></div>
+              <div className='w-[204px] h-3 rounded-full bg-gray-400'></div>
+              <div className='w-[150px] h-3 rounded-full bg-gray-400'></div>
+            </div>
+            <div className='flex flex-col items-center gap-3 animate-pulse'>
+              <div className='w-[264px] h-[405px] rounded-md bg-gray-400'></div>
+              <div className='w-[204px] h-3 rounded-full bg-gray-400'></div>
+              <div className='w-[150px] h-3 rounded-full bg-gray-400'></div>
+            </div>
+        </div>
+
+      )}
+      
       {characters.map((character, index) => (
         <div key={index} className='flex flex-col justify-center items-center'>
           <div className='group rounded-xl overflow-hidden relative'>
             <img
               className='w-[264px] h-[405px] rounded-md'
               src={`http://localhost:8888/movies/image/${character.image_movie}`}
-              alt={character.title || 'Movie image'} 
+              alt={character.title || 'Movie image'}
+              onLoad={handleImageLoad} 
             />
             <div className='flex-col gap-2 absolute inset-0 bg-[rgba(0,0,0,0.5)] invisible group-hover:visible flex justify-center items-center'>
               <Link to={`/movie/${character.id}`} className='w-44 h-12 border border-white text-white rounded-md text-center py-2.5'>
