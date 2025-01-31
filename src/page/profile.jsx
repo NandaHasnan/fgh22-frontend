@@ -196,7 +196,7 @@ function App() {
                       )}
               <AccountProfile status='active' content='Account Profile' status2='not' content2='Order History' />
               <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-12'>
-                <div className='py-10 px-12 w-[950px] h-[418px] rounded-lg bg-white'>
+                <div className='py-10 px-12 w-[950px] h-[418px] rounded-lg bg-white flex flex-col gap-4'>
                   <div className='flex flex-col gap-4'>
                     <div className='text-base text-[#14142B]'>Details Information</div>
                     <div className='px-6 w-[825px] h-[1px] bg-[#DEDEDE]'></div>

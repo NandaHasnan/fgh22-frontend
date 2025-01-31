@@ -31,9 +31,12 @@ function App() {
    const bookingDetails = useSelector((state) => state.booking.movieDetails)
   //  const seatDetails = useSelector((state) => state.seat?.seatDetail)
    const seatDetails = useSelector((state) => ({
-    seat: state.seat?.seat,
-    price: state.seat?.price,
+    seat: state.seat?.seat || [],
+    price: state.seat?.price || 0,
   }));
+  const user_id = userProfile?.id
+  const [submit, setSubmit] = useState(false)
+
    useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -62,8 +65,14 @@ function App() {
     }, [auth, dispatch])
 
     const onSubmit = async (data) => {
+      if (submit){
+        return
+      }
+
+      setSubmit(true)
       try {
         const payload = {
+          user_id: user_id,
           date: data.date,
           time: data.time,
           movie_title: data.movie_title,
@@ -139,8 +148,8 @@ function App() {
                 <input className="text-base placeholder:text-[#000000]" type="text" id="movie_title" name="movie_title" {...register('movie_title')} defaultValue={bookingDetails.title} />
                 <div className="w-full h-[1px] bg-[#E6E6E6]"></div>
                 <div className="text-sm text-[#8692A6]">CINEMA NAME</div>
-                <div className="text-base placeholder:text-[#000000]" {...register('cinema_name')}>{bookingDetails.cinemaName}</div>
-                {/* <input className="text-base placeholder:text-[#000000]" type="text" id="date" name="date" placeholder="CineOne21 Cinema" /> */}
+                {/* <div className="text-base placeholder:text-[#000000]" {...register('cinema_name')}>{bookingDetails.cinemaName}</div> */}
+                <input className="text-base placeholder:text-[#000000]" type="text" id="cinema_name" name="cinema_name" {...register('cinema_name')} defaultValue={bookingDetails.cinemaName} />
                 <div className="w-full h-[1px] bg-[#E6E6E6]"></div>
                 <div className="text-sm text-[#8692A6]">NUMBER OF TICKETS</div>
                 <div className="text-base placeholder:text-[#000000]" {...register('total_seat')}>{seatDetails.seat}</div>
@@ -156,6 +165,7 @@ function App() {
               <div className="flex flex-col gap-4 md:gap-3.5">
                 <label className="text-sm md:text-base text-[#696F79]" htmlFor="full-name">Full Name</label>
                 <input className="w-full md:w-[665px] h-12 md:h-16 border rounded-md px-4 md:px-11 border-[#DEDEDE]" type="text" id="full_name" name="full_name" {...register('full_name')}  defaultValue={`${userProfile.firstname} ${userProfile.lastname}`} />
+                <input className="hidden md:hidden w-full md:w-[665px] h-12 md:h-16 border rounded-md px-4 md:px-11 border-[#DEDEDE]" type="text" id="user_id" name="user_id" {...register('user_id')} />
                 <label className="text-sm md:text-base text-[#696F79]" htmlFor="email">Email</label>
                 <input className="w-full md:w-[665px] h-12 md:h-16 border rounded-md px-4 md:px-11 border-[#DEDEDE]" type="email" id="email" name="email" {...register('email')} defaultValue={userProfile.email} />
                 <label className="text-sm md:text-base text-[#696F79]" htmlFor="phone">Phone Number</label>

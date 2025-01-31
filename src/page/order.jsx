@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useEffect } from 'react';
 // import Coverspi from '../assets/gambar/Rectangle 618.png'
 import Cineone from '../assets/gambar/CineOne21 2.png'
+import Hiflix from '../assets/gambar/hiflix 2.png'
+import Ebv from '../assets/gambar/ebv.id 2.png'
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
@@ -18,14 +20,21 @@ function App() {
     const [isShow, setShow] = useState(false);
     const bookingDetails = useSelector((state) => state.booking.movieDetails)
     const [seat, setSeat] = useState([])
+    // const [bookSeat, setBookSeat] = useState([])
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { register, handleSubmit } = useForm()
+    const auth = useSelector(state => state.auth)
+    
 
     const handleClick = (s) => {
       if (!seat.includes(s)) {
         setSeat([...seat, s])
+      }else{
+        setSeat(seat.filter((seat) => seat !== s))
       }
+      // setSeat(prev => prev.includes(s) ? prev.filter(item => item !== s) : [...prev, s])
+      
     }
 
     const formatRupiah = (number) => {
@@ -46,10 +55,24 @@ function App() {
       navigate('/payment');
     };
     
+    // async function getSeat(token) {
+    //   const data = await (
+    //     await fetch("http://localhost:8888/order/seat", {
+    //       headers: {
+    //         Authorization: `Bearer ${token.token}`,
+    //       },
+    //     })
+    //   ).json();
+    //   console.log(data.data);
+    //   setBookSeat( data.result);
+    // }
 
     useEffect(() => {
       window.scrollTo(0, 0)
-    }, [])
+      if (auth !== "") {
+        // getSeat(auth);
+      }
+    }, [auth])
   return (
     <div className=''>
       <Navbar/>
@@ -64,7 +87,7 @@ function App() {
 
         <section className='flex flex-col lg:flex-row justify-center gap-4'>
           <div className=''>
-            <div className='flex flex-col gap-9 w-full lg:w-[732px] h-full lg:h-[807px] bg-white px-5 py-9 rounded-md'>
+            <div className='flex flex-col gap-9 w-full lg:w-[732px] h-full lg:h-full bg-white px-5 py-10 rounded-md'>
               <div className='flex flex-col md:flex-row gap-3.5 w-full h-full border border-abuMuda3 rounded-md py-3 px-6'>
                 <img src={bookingDetails.movie_image} alt="Cover" className='w-20 md:w-20' />
                 <div className='flex flex-col gap-3.5'>
@@ -79,7 +102,8 @@ function App() {
                   </div>
                 </div>
               </div>
-              {/* <Seat/> */}
+              {/* <Seat/> */} 
+              
               <div className='flex flex-col gap-9'>
                                       <div className='text-2xl font-semibold'>Choose Your Seat</div>
                                       <div className='text-sm text-text1 font-semibold text-center'>Screen</div>
@@ -98,62 +122,63 @@ function App() {
                                               </div>
                                               <div className='md:hidden h-340 w-[1px] rounded-full bg-purple'></div>
                                               <div className='grid grid-cols-7 gap-2'>
+                                                {/* {seat.map((s) => ())} */}
                                                   {/* <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>A</button> */}
-                                                  <button onClick={() => handleClick('A1')} className='w-5 h-5 md:w-8 md:h-8 rounded-md  bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('A2')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('A3')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('A4')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('A5')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('A6')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('A7')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('A1')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('A1') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('A2')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('A2') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('A3')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('A3') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('A4')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('A4') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('A5')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('A5') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('A6')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('A6') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('A7')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('A7') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
                                                   {/* <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>B</button> */}
-                                                  <button onClick={() => handleClick('B1')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('B2')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('B3')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('B4')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('B5')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('B6')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('B7')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('B1')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('B1') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('B2')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('B2') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('B3')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('B3') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('B4')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('B4') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('B5')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('B5') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('B6')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('B6') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('B7')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('B7') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
                                                   {/* <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>C</button> */}
-                                                  <button onClick={() => handleClick('C1')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('C2')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('C3')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('C4')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#1D4ED8]'></button>
-                                                  <button onClick={() => handleClick('C5')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#1D4ED8]'></button>
-                                                  <button onClick={() => handleClick('C6')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#1D4ED8]'></button>
-                                                  <button onClick={() => handleClick('C7')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('C1')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('C1') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('C2')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('C2') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('C3')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('C3') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('C4')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('C4') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('C5')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('C5') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('C6')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('C6') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('C7')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('C7') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
                                                   {/* <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>D</button> */}
-                                                  <button onClick={() => handleClick('D1')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('D2')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('D3')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('D4')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('D5')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('D6')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('D7')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('D1')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('D1') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('D2')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('D2') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('D3')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('D3') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('D4')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('D4') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('D5')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('D5') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('D6')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('D6') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('D7')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('D7') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
                                                   {/* <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>E</button> */}
-                                                  <button onClick={() => handleClick('E1')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E2')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E3')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E4')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('E5')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E6')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E7')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('E1')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('E1') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('E2')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('E2') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('E3')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('E3') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('E4')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('E4') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('E5')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('E5') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('E6')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('E6') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('E7')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('E7') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
                                                   {/* <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>F</button> */}
-                                                  <button onClick={() => handleClick('F1')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('F2')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('F3')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('F4')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('F5')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('F6')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('F7')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('F1')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('F1') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('F2')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('F2') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('F3')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('F3') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('F4')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('F4') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('F5')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('F5') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('F6')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('F6') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('F7')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('F7') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
                                                   {/* <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>G</button> */}
-                                                  <button onClick={() => handleClick('G1')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G2')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G3')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('G4')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G5')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G6')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G7')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('G1')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('G1') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('G2')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('G2') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('G3')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('G3') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('G4')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('G4') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('G5')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('G5') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('G6')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('G6') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
+                                                  <button onClick={() => handleClick('G7')} className={`w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2 ${seat.includes('G7') ? 'bg-gray-500' : 'bg-abuMuda2'}`}></button>
                                                   {/* <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'></button> */}
                                                   <div className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>1</div>
                                                   <div className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>2</div>
@@ -165,63 +190,63 @@ function App() {
                                                   
                                               </div>
                                               <div className='grid grid-cols-8 gap-2'>
-                                                  <button className='w-5 h-5 md:w-8 md:h-8 rounded-md '></button>
-                                                  <button onClick={() => handleClick('A8')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('A9')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('A10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('A11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('A12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('A13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('A14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button className='w-5 h-5 md:w-8 md:h-8 rounded-md '></button>
-                                                  <button onClick={() => handleClick('B8')}  className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('B9')}  className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('B10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('B11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('B12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('B13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('B14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button className='w-5 h-5 md:w-8 md:h-8 rounded-md '></button>
-                                                  <button onClick={() => handleClick('C8')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('C9')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('C10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('C11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('C12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('C13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('C14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button className='w-5 h-5 md:w-8 md:h-8 rounded-md '></button>
-                                                  <button onClick={() => handleClick('D8')}className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('D9')}className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('D10')}className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('D11')}className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('D12')}className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('D13')}className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('D14')}className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button className='w-5 h-5 md:w-8 md:h-8 rounded-md '></button>
-                                                  <button onClick={() => handleClick('E8')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E9')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('E14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button className='w-5 h-5 md:w-8 md:h-8 rounded-md '></button>
-                                                  <button onClick={() => handleClick('F8')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('F9')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('F10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#F589D7]'></button>
-                                                  <button onClick={() => handleClick('F11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#F589D7]'></button>
-                                                  <button onClick={() => handleClick('F12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('F13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-[#6E7191]'></button>
-                                                  <button onClick={() => handleClick('F14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button className='w-5 h-5 md:w-8 md:h-8 rounded-md '></button>
-                                                  <button onClick={() => handleClick('G8')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G9')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button onClick={() => handleClick('G14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md bg-abuMuda2'></button>
-                                                  <button className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'></button>
+                                                  <div className='w-5 h-5 md:w-8 md:h-8 rounded-md'></div>
+                                                  <button onClick={() => handleClick('A8')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('A9')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('A10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('A11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('A12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-[#6E7191]'></button>
+                                                  <button onClick={() => handleClick('A13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('A14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <div className='w-5 h-5 md:w-8 md:h-8 rounded-md '></div>
+                                                  <button onClick={() => handleClick('B8')}  className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('B9')}  className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('B10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('B11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('B12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('B13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('B14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <div className='w-5 h-5 md:w-8 md:h-8 rounded-md '></div>
+                                                  <button onClick={() => handleClick('C8')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('C9')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-[#6E7191]'></button>
+                                                  <button onClick={() => handleClick('C10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('C11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('C12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-[#6E7191]'></button>
+                                                  <button onClick={() => handleClick('C13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('C14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <div className='w-5 h-5 md:w-8 md:h-8 rounded-md '></div>
+                                                  <button onClick={() => handleClick('D8')}className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('D9')}className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-[#6E7191]'></button>
+                                                  <button onClick={() => handleClick('D10')}className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('D11')}className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('D12')}className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-[#6E7191]'></button>
+                                                  <button onClick={() => handleClick('D13')}className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('D14')}className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <div className='w-5 h-5 md:w-8 md:h-8 rounded-md '></div>
+                                                  <button onClick={() => handleClick('E8')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('E9')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('E10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('E11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('E12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('E13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('E14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <div className='w-5 h-5 md:w-8 md:h-8 rounded-md '></div>
+                                                  <button onClick={() => handleClick('F8')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('F9')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('F10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-[#F589D7]'></button>
+                                                  <button onClick={() => handleClick('F11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-[#F589D7]'></button>
+                                                  <button onClick={() => handleClick('F12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('F13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-[#6E7191]'></button>
+                                                  <button onClick={() => handleClick('F14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <div className='w-5 h-5 md:w-8 md:h-8 rounded-md '></div>
+                                                  <button onClick={() => handleClick('G8')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('G9')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('G10')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('G11')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('G12')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('G13')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <button onClick={() => handleClick('G14')} className='w-5 h-5 md:w-8 md:h-8 rounded-md hover:bg-[#6E7191] bg-abuMuda2'></button>
+                                                  <div className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'></div>
                                                   <div className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>8</div>
                                                   <div className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>9</div>
                                                   <div className='w-5 h-5 md:w-8 md:h-8 rounded-md hidden md:block'>10</div>
@@ -292,12 +317,30 @@ function App() {
           </div>
           <div className='hidden md:flex flex-col gap-10'>
               <div className='flex flex-col gap-10 pt-4 w-full lg:w-[358px] h-full lg:h-[413px] bg-white rounded-md'>
+              {bookingDetails.cinemaName === "cineone21" &&(
                 <div className='flex flex-col gap-3'>
                   <div className='flex justify-center px-24'>
                     <img className='justify-center' src={Cineone} alt="Cinema logo" />
                   </div>
                   <div className='text-xl md:text-2xl text-center '>{bookingDetails.cinemaName}</div>
                 </div>
+              )}
+              {bookingDetails.cinemaName === "hiflix" &&(
+                <div className='flex flex-col gap-3'>
+                  <div className='flex justify-center px-24'>
+                    <img className='justify-center' src={Hiflix} alt="Cinema logo" />
+                  </div>
+                  <div className='text-xl md:text-2xl text-center '>{bookingDetails.cinemaName}</div>
+                </div>
+              )}
+              {bookingDetails.cinemaName === "ebu.id" &&(
+                <div className='flex flex-col gap-3'>
+                  <div className='flex justify-center px-24'>
+                    <img className='justify-center' src={Ebv} alt="Cinema logo" />
+                  </div>
+                  <div className='text-xl md:text-2xl text-center '>{bookingDetails.cinemaName}</div>
+                </div>
+              )}
                 <div className='px-5 flex flex-col gap-5'>
                   <div className='flex justify-between'>
                     <div className='text-sm text-[#6B6B6B]'>Movie selected</div>

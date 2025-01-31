@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 // import Spiderman from '../assets/gambar/spiderman.png';
 import Ebv from '../assets/gambar/ebv.id 2.png';
-// import Cineone from '../assets/gambar/CineOne21 2.png';
-// import Hiflix from '../assets/gambar/hiflix 2.png';
+import Cineone from '../assets/gambar/CineOne21 2.png';
+import Hiflix from '../assets/gambar/hiflix 2.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
@@ -247,9 +247,9 @@ function App() {
                 {cinema.map((cin, index) => (
                   <div key={index} className="w-full md:w-[264px]">
                     {/* <div className="md:hover:bg-orenMuda w-full md:w-[264px] md:h-[157px] border-2 border-abuMuda3 rounded-md px-8 py-3 md:py-11 md:px-16"> */}
-                      {/* <img src={cin.image} alt={cin.name}/> */}
-                      <button onClick={() => handleBookNow(cin)} className="md:hover:bg-orenMuda w-full md:w-[264px] md:h-[157px] cursor-pointer text-center border-2 border-abuMuda3 rounded-md px-8 py-3 md:py-11 md:px-16">{cin.cinema_name}</button>
-                      
+                    
+                      <button onClick={() => handleBookNow(cin)} className="md:hover:bg-orenMuda w-full md:w-[264px] md:h-[157px] cursor-pointer text-center border-2 border-abuMuda3 rounded-md px-8 py-3 md:py-11 md:px-16"><img src={`${cin.cinema_name === "ebu.id" && Ebv || cin.cinema_name === "hiflix" && Hiflix || cin.cinema_name === "cineone21" && Cineone}`} alt="" /></button>
+                    
                     {/* </div> */}
                     {/* <button onClick={() => handleBookNow(cin)} className='bg-oren py-4 px-20 rounded-md text-white'>Book Now</button> */}
                   </div>
