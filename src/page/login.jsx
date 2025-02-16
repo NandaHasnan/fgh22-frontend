@@ -45,6 +45,7 @@ function Login() {
     const res = await (await fetch("http://localhost:8888/auth/login", {
       method: "POST",
       body: queryString,
+      mode: "no-cors",
       headers:{
         'Content-Type' : 'application/x-www-form-urlencoded'
       }
